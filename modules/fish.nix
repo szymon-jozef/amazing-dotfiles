@@ -3,6 +3,11 @@
 {
   programs.fish = {
     enable = true;
+    loginShellInit = ''
+      # Dodaje binarki Home Managera do PATH, jeśli jeszcze ich tam nie ma
+      fish_add_path --move --prepend --path "$HOME/.nix-profile/bin" /nix/var/nix/profiles/default/bin /run/current-system/sw/bin
+    '';
+
     interactiveShellInit = ''
       # no dum greeting
       set fish_greeting ""

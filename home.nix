@@ -41,6 +41,7 @@
     ".config/gtk-4.0".source = ./dotfiles/gtk-4.0;
     ".config/satty".source = ./dotfiles/satty;
     ".config/waybar".source = ./dotfiles/waybar;
+    ".config/hypr".source = ./dotfiles/hypr;
   };
 
   home.sessionVariables = {
