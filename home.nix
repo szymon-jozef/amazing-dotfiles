@@ -21,6 +21,7 @@
     ./modules/btop.nix
     ./modules/atuin.nix
     ./modules/zoxide.nix
+    ./modules/mako.nix
   ];
 
   home.stateVersion = "25.11"; # Please read the comment before changing.
@@ -32,6 +33,14 @@
   # plain files is through 'home.file'.
   home.file = {
     ".config/ashell/config.toml".source = ./dotfiles/ashell/config.toml;
+    ".config/fastfetch".source = ./dotfiles/fastfetch;
+    ".config/kitty".source = ./dotfiles/kitty;
+    ".config/MangoHud".source = ./dotfiles/mangohud;
+    ".config/nvim".source = ./dotfiles/nvim;
+    ".config/gtk-3.0/settings.ini".source = ./dotfiles/gtk-3.0/settings.ini;
+    ".config/gtk-4.0".source = ./dotfiles/gtk-4.0;
+    ".config/satty".source = ./dotfiles/satty;
+    ".config/waybar".source = ./dotfiles/waybar;
   };
 
   home.sessionVariables = {

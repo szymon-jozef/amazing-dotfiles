@@ -1,0 +1,134 @@
+// -*- mode: jsonc -*-
+{
+    "layer": "top", // Waybar at top layer
+    "position": "right", // Waybar position (top|bottom|left|right)
+    "spacing": 4, // Gaps between modules (4px)
+    "margin-top": 10,
+    "margin-bottom": 10,
+    "margin-left": 8,
+    "margin-right": 8,
+    "mode": "dock",
+    "reload_style_on_change": true,
+    "width": 70,
+    "output": [
+        "DP-1",
+        "eDP-1",
+        "LVDS-1"
+    ],
+    // Choose the order of the modules
+    "modules-left": [
+        "clock",
+        "custom/notifications",
+        "privacy",
+        "custom/spotify",
+        "pulseaudio"
+    ],
+    "modules-center": [
+        "hyprland/workspaces"
+    ],
+    "modules-right": [
+        "battery",
+        "tray"
+    ],
+    "hyprland/workspaces": {
+        "format": "{} - {icon}",
+        "on-click": "activate",
+        "on-click-right": "close",
+        "all-outputs": true,
+        "active-only": false,
+        "sort-by-number": true,
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": "",
+            "6": "",
+            "7": "",
+            "8": "",
+            "9": "",
+            "10": "",
+            "default": ""
+        }
+    },
+    "tray": {
+        "spacing": 10
+    },
+    "clock": {
+        "format": "<big>{:%R}</big>",
+        "format-alt": "<small>{:%d.%m.%Y}</small>",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "mode": "year",
+            "mode-mon-col": 3,
+            "weeks-pos": "right",
+            "on-scroll": 1,
+            "format": {
+                "months": "<span color='#ffead3'><b>{}</b></span>",
+                "days": "<span color='#ecc6d9'><b>{}</b></span>",
+                "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+                "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+                "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+            },
+            "actions": {
+                "on-click-right": "mode",
+                "on-scroll-up": "tz_up",
+                "on-scroll-down": "tz_down"
+            }
+        }
+    },
+    "network": {
+        "format-wifi": " ({signalStrength}%)   ",
+        "format-ethernet": "",
+        "tooltip-format": "{ifname} via {gwaddr} with {ipaddr}/{cidr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        "on-click": "kitty nmtui"
+    },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": "  ",
+        "format-source": " {volume}% ",
+        "format-source-muted": "  ",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": " ",
+            "headset": " ",
+            "phone": " ",
+            "portable": " ",
+            "car": " ",
+            "default": [
+                "",
+                "",
+                ""
+            ]
+        },
+        "on-click": "pavucontrol -t 3",
+        "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+    },
+    "custom/spotify": {
+        "format": "{}",
+        "return-type": "json",
+        "on-click": "playerctl play-pause --player spotify",
+        "on-click-right": "killall spotify",
+        "on-scroll-up": "playerctl next --player spotify",
+        "on-scroll-down": "playerctl previous --player spotify",
+        "restart-interval": "0",
+        "hide-empty-text": true,
+        "justify": "center",
+        "max-length": 40,
+        "exec": "$HOME/.config/waybar/scripts/mediaplayer.sh spotify"
+    },
+    "custom/notifications": {
+        "format": "<big>{text}</big>",
+        "on-click-right": "~/.local/bin/check-do-not-disturb.sh change",
+        "exec": "~/.local/bin/check-do-not-disturb.sh show",
+        "exec-on-event": "~/.local/bin/check-do-not-disturb.sh show",
+        "tooltip": false,
+        "return-type": "text",
+        "signal": 2
+    }
+}
