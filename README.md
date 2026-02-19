@@ -12,7 +12,7 @@ My dotfiles managed with [home manager](https://github.com/nix-community/home-ma
 - nvim config
 
 ## Screenshot
-![Desktop screenshot](assets/sreenshot.png)
+![Desktop screenshot](assets/screenshot.png)
 ![Terminal screenshot](assets/terminal.png)
 
 # Some history
