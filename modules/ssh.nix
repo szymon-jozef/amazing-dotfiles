@@ -20,6 +20,12 @@
         identityFile = "~/.ssh/aur";
       };
 
+      "github.com" = {
+        hostname = "github.com";
+        user = "git";
+        identityFile = "~/.ssh/github";
+      };
+
       "*" = {
         addKeysToAgent = "yes";
         setEnv = {
