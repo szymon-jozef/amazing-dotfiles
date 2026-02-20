@@ -19,6 +19,7 @@
       text-color = "#cdd6f4";
       border-color = "#89b4fa";
       progress-color = "over #313244";
+      on-notify = "exec paplay /usr/share/sounds/freedesktop/stereo/bell.oga";
     };
 
     extraConfig = ''
