@@ -33,6 +33,7 @@
 
           if test -n "$file"
               set -l md5_before (md5sum $file)
+              pushd $config_dir
               
               nvim $file
 
@@ -42,14 +43,13 @@
                   set -l rel_file (realpath --relative-to=$config_dir $file)
                   
                   if home-manager switch -b backup
-                      pushd $config_dir
                       git add -A
                       set commit_msg "update: $rel_file"
                       git commit -m "$commit_msg"
                       git push
-                      popd
                   end
-                  
+
+              popd
               else
                   echo "No changes made"
               end
@@ -59,7 +59,7 @@
       };
 
       ls = {
-        body = "eza --long --icons --all --group-directories-first --git $argv";
+        body = "eza --long --icons --group-directories-first --git $argv";
       };
     };
   };
