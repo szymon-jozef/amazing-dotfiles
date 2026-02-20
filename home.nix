@@ -44,6 +44,7 @@
     ".config/satty".source = ./dotfiles/satty;
     ".config/waybar".source = ./dotfiles/waybar;
     ".config/hypr".source = ./dotfiles/hypr;
+    ".config/mimeapps.list".source = ./dotfiles/mimeapps.list;
     ".local/bin".source = ./scripts;
   };
 
