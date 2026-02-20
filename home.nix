@@ -23,6 +23,7 @@
     ./modules/zoxide.nix
     ./modules/mako.nix
     ./modules/ssh.nix
+    ./modules/bat.nix
   ];
 
   home.stateVersion = "25.11"; # Please read the comment before changing.
