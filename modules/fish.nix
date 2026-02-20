@@ -15,10 +15,6 @@
       # yes, please setup git for me
       gh auth setup-git
 
-      # add github ssh key
-      eval (ssh-agent -c) > /dev/null
-      ssh-add ~/.ssh/github 2> /dev/null
-
       # add github gpg key
       set -gx GPG_TTY (tty)
 

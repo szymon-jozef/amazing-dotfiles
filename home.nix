@@ -22,6 +22,7 @@
     ./modules/atuin.nix
     ./modules/zoxide.nix
     ./modules/mako.nix
+    ./modules/ssh.nix
   ];
 
   home.stateVersion = "25.11"; # Please read the comment before changing.
