@@ -24,6 +24,7 @@
     ./modules/mako.nix
     ./modules/ssh.nix
     ./modules/bat.nix
+    ./modules/git.nix
   ];
 
   home.stateVersion = "25.11"; # Please read the comment before changing.
