@@ -39,19 +39,17 @@
               if test "$md5_before" != (md5sum $file)
                   echo "Changes made. Prepparing commit..."
                   
-                  pushd $config_dir
-                  
-                  git add $file
-                  
                   set -l rel_file (realpath --relative-to=$config_dir $file)
                   
-                  set commit_msg "update: $rel_file"
-                  git commit -m "$commit_msg"
-                  git push
+                  if home-manager switch -b backup
+                      pushd $config_dir
+                      git add -A
+                      set commit_msg "update: $rel_file"
+                      git commit -m "$commit_msg"
+                      git push
+                      popd
+                  end
                   
-                  home-manager switch -b backup
-                  
-                  popd
               else
                   echo "No changes made"
               end
