@@ -42,6 +42,7 @@
     ".config/satty".source = ./dotfiles/satty;
     ".config/waybar".source = ./dotfiles/waybar;
     ".config/hypr".source = ./dotfiles/hypr;
+    ".local/bin".source = ./scripts;
   };
 
   home.sessionVariables = {
