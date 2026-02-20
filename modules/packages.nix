@@ -14,5 +14,6 @@
     wl-clipboard
     mako
     bc
+    cowsay
   ];
 }
