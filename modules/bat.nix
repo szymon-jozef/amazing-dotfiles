@@ -5,7 +5,7 @@
     enable = true;
 
     config = {
-      theme = "cattpuccin-mocha";
+      theme = "catppuccin-mocha";
     };
 
     themes = {
