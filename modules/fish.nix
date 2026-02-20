@@ -38,7 +38,7 @@
               nvim $file
 
               if test "$md5_before" != (md5sum $file)
-                  echo "Changes made. Prepparing commit..."
+                  echo "Changes made. Preparing commit..."
                   
                   set -l rel_file (realpath --relative-to=$config_dir $file)
                   
@@ -48,19 +48,68 @@
                       git commit -m "$commit_msg"
                       git push
                   end
-
-              popd
               else
                   echo "No changes made"
               end
+              popd 
           end
-
         '';
       };
 
       ls = {
         body = "eza --long --icons --group-directories-first --git $argv";
       };
+
+      lst = {
+        body = "eza --long --icons --color --git --tree  $argv";
+      };
+
+      cp_mail = {
+        body = "pandoc $argv -t html |wl-copy -t text/html";
+      };
+
+      update = {
+        body = ''
+          echo "===System update==="
+
+          if not type -q yay
+            echo "Yay not found… Is this Arch? If yes, then please consider installing it!"
+          else
+            yay
+          end
+
+          if type -q pacman
+              echo "===Remove orphans==="
+              set orphans (pacman -Qtdq)
+              if test (count $orphans) -gt 0
+                  sudo pacman -Rns $orphans
+              end
+          end
+
+          if type -q flatpak
+              echo "===Flatpak update==="
+              flatpak update --noninteractive
+              echo "===Flatpak remove unused==="
+              flatpak uninstall --unused
+          end
+
+          if type -q nix-channel
+              echo "===Nix update==="
+              nix-channel --update
+              echo "===Nix garbage collection==="
+              home-manager expire-generations "-7 days"
+          end
+        '';
+      };
+
+      rm = {
+        body = "trash $argv";
+      };
+
+      open = {
+        body = "nohup xdg-open $argv > /dev/null & ";
+      };
+
     };
   };
 }
