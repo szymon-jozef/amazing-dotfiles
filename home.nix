@@ -32,6 +32,7 @@
     ./modules/bat.nix
     ./modules/git.nix
     ./modules/kitty.nix
+    ./modules/satty.nix
   ];
 
   home.stateVersion = "25.11"; # Please read the comment before changing.
@@ -49,7 +50,6 @@
     ".config/nvim".source = ./dotfiles/nvim;
     ".config/gtk-3.0/settings.ini".source = ./dotfiles/gtk-3.0/settings.ini;
     ".config/gtk-4.0".source = ./dotfiles/gtk-4.0;
-    ".config/satty".source = ./dotfiles/satty;
     ".config/waybar".source = ./dotfiles/waybar;
     ".config/hypr".source = ./dotfiles/hypr;
     ".config/mimeapps.list".source = ./dotfiles/mimeapps.list;
