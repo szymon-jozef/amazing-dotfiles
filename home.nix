@@ -45,7 +45,6 @@
   # plain files is through 'home.file'.
   home.file = {
     ".config/fastfetch".source = ./dotfiles/fastfetch;
-    ".config/kitty".source = ./dotfiles/kitty;
     ".config/MangoHud".source = ./dotfiles/mangohud;
     ".config/nvim".source = ./dotfiles/nvim;
     ".config/gtk-3.0/settings.ini".source = ./dotfiles/gtk-3.0/settings.ini;
