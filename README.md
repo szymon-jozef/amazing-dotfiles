@@ -24,6 +24,7 @@ As of today I'm using this repo with home manager. I'm still trying stuff out, b
 
 # How to try this out?
 I guess you should [install home manager](https://nix-community.github.io/home-manager/index.xhtml#sec-install-standalone). You can do it on *any* distro, but I only use Arch, so I don't guarantee it will work elsewhere. To try it out just copy this repo to `~/.config/home-manager`, cd there and then run:
+**Important**: don't forget to change your user info in `flake.nix` before running this command!
 ## On NixOS
 ```bash
 home-manager switch --flake .#nixos -b backup
