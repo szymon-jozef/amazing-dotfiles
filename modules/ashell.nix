@@ -1,9 +1,9 @@
-{ ... }:
+{ lib, isNixOS, ... }:
 
 {
   programs.ashell = {
     enable = true;
-    package = null;
+    package = lib.mkIf (!isNixOS) null;
     settings = {
       outputs = {
         Targets = [ "DP-1" ];

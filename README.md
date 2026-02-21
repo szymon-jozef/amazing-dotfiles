@@ -23,11 +23,15 @@ Then I created [superior dotfiles](https://github.com/szymon-jozef/superior_dotf
 As of today I'm using this repo with home manager. I'm still trying stuff out, but it looks pretty good right now.
 
 # How to try this out?
-I guess you should [install home manager](https://nix-community.github.io/home-manager/index.xhtml#sec-install-standalone). You can do it on *any* distro! Then you just copy this repo to `~/.config/home-manager` and run
+I guess you should [install home manager](https://nix-community.github.io/home-manager/index.xhtml#sec-install-standalone). You can do it on *any* distro, but I only use Arch, so I don't guarantee it will work elsewhere. To try it out just copy this repo to `~/.config/home-manager`, cd there and then run:
+## On NixOS
 ```bash
-home-manager switch -b backup
+home-manager switch --flake .#nixos -b backup
 ```
-
+## On Arch
+```bash
+home-manager switch --flake .#arch -b backup
+```
 ---
 
 I hope you'll enjoy it, if you for whatever reason want to try this random ass dotfiles found on the internet…

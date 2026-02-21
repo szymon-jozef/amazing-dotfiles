@@ -1,9 +1,9 @@
-{ lib, ... }:
+{ lib, isNixOS, ... }:
 
 {
-  programs.kitty = lib.mkForce {
+  programs.kitty = {
     enable = true;
-    package = null;
+    package = lib.mkIf (!isNixOS) null;
     settings = {
       confirm_os_window_close = 0;
       dynamic_background_opacity = true;

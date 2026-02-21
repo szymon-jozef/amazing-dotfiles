@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  full_name,
+  email,
+  ...
+}:
 
 {
   home.packages = with pkgs; [
@@ -9,8 +14,8 @@
     enable = true;
     settings = {
       user = {
-        name = "Szymon P";
-        email = "szymon_jozef@proton.me";
+        name = full_name;
+        email = email;
       };
       init.defaultBranch = "master";
       push.autoSetupRemote = true;
@@ -18,7 +23,7 @@
     };
 
     signing = {
-      key = "szymon_jozef@proton.me";
+      key = email;
       signByDefault = true;
     };
 

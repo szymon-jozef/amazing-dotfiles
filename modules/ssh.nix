@@ -1,4 +1,4 @@
-{ args, ... }:
+{ username, ... }:
 
 {
   services.ssh-agent.enable = true;
@@ -10,13 +10,13 @@
     matchBlocks = {
       "dmowski" = {
         hostname = "192.168.0.30";
-        user = "szymon";
+        user = username;
         port = 22;
         identityFile = "~/.ssh/dmowski";
       };
 
       "aur.archlinux.org" = {
-        user = "szymon";
+        user = username;
         identityFile = "~/.ssh/aur";
       };
 

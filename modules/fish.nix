@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ isNixOS, ... }:
 
 {
   programs.fish = {
@@ -42,7 +42,9 @@
                   
                   set -l rel_file (realpath --relative-to=$config_dir $file)
                   
-                  if home-manager switch -b backup
+                  if home-manager switch --flake "$config_dir#${
+                    if isNixOS then "nixos" else "arch"
+                  }" -b backup
                       git add -A
                       set commit_msg "update: $rel_file"
                       git commit -m "$commit_msg"

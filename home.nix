@@ -1,10 +1,17 @@
-{ config, pkgs, ... }:
+{
+  pkgs,
+  isNixOS,
+  username,
+  ...
+}:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "szymon";
-  home.homeDirectory = "/home/szymon";
+  home.username = username;
+  home.homeDirectory = "/home/${username}";
+
+  home.file."test-os.txt".text = if isNixOS then "this is nixos" else "this is arch";
 
   nix = {
     package = pkgs.nix;
@@ -59,10 +66,6 @@
     EDITOR = "nvim";
     VISUAL = "nvim";
   };
-
-  home.sessionPath = [
-    "/home/szymon/.lmstudio/bin"
-  ];
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
