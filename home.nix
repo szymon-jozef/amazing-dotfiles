@@ -14,6 +14,12 @@
     ];
   };
 
+  catppuccin = {
+    enable = true;
+    flavor = "mocha";
+    accent = "mauve";
+  };
+
   imports = [
     ./modules/packages.nix
     ./modules/fish.nix
@@ -25,6 +31,7 @@
     ./modules/ssh.nix
     ./modules/bat.nix
     ./modules/git.nix
+    ./modules/kitty.nix
   ];
 
   home.stateVersion = "25.11"; # Please read the comment before changing.
