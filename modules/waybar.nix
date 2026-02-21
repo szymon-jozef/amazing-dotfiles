@@ -193,150 +193,124 @@
     };
 
     style = ''
-      @define-color rosewater #f5e0dc;
-      @define-color flamingo #f2cdcd;
-      @define-color pink #f5c2e7;
-      @define-color mauve #cba6f7;
-      @define-color red #f38ba8;
-      @define-color maroon #eba0ac;
-      @define-color peach #fab387;
-      @define-color yellow #f9e2af;
-      @define-color green #a6e3a1;
-      @define-color teal #94e2d5;
-      @define-color sky #89dceb;
-      @define-color sapphire #74c7ec;
-      @define-color blue #89b4fa;
-      @define-color lavender #b4befe;
-      @define-color text #cdd6f4;
-      @define-color subtext1 #bac2de;
-      @define-color subtext0 #a6adc8;
-      @define-color overlay2 #9399b2;
-      @define-color overlay1 #7f849c;
-      @define-color overlay0 #6c7086;
-      @define-color surface2 #585b70;
-      @define-color surface1 #45475a;
-      @define-color surface0 #313244;
-      @define-color base #1e1e2e;
-      @define-color mantle #181825;
-      @define-color crust #11111b;
 
-            /* Global styles */
-            * {
-                transition: 0.2s all ease-in-out;
-                font-size: 14px;
-                font-family: inherit;
-                padding: 3px;
-                margin: 1px 2px;
-                color: @text;
-                border-radius: 12px;
-            }
+      /* Global styles */
+      * {
+          transition: 0.2s all ease-in-out;
+          font-size: 14px;
+          font-family: inherit;
+          padding: 3px;
+          margin: 1px 2px;
+          color: @text;
+          border-radius: 12px;
+      }
 
-            *:hover {
-                text-shadow: none;
-            }
+      *:hover {
+          text-shadow: none;
+      }
 
-            /* Window */
-            window#waybar {
-                background-color: @base;
-                border-radius: 15px;
-            }
+      /* Window */
+      window#waybar {
+          background-color: @base;
+          border-radius: 15px;
+      }
 
-            /* Workspaces */
-            #workspaces button {
-                padding: 2px;
-                margin: 1px;
-                background: transparent;
-                color: @lavender;
-                box-shadow: inset 0 1.5px;
-            }
+      /* Workspaces */
+      #workspaces button {
+          padding: 2px;
+          margin: 1px;
+          background: transparent;
+          color: @lavender;
+          box-shadow: inset 0 1.5px;
+      }
 
-            #workspaces button:hover {
-                background-color: @surface1;
-                box-shadow: inset 2px 5px;
-            }
+      #workspaces button:hover {
+          background-color: @surface1;
+          box-shadow: inset 2px 5px;
+      }
 
-            #workspaces button.active {
-                background-color: @surface0;
-                box-shadow: inset 1px 4px 0 1px;
-            }
+      #workspaces button.active {
+          background-color: @surface0;
+          box-shadow: inset 1px 4px 0 1px;
+      }
 
-            #workspaces button.urgent {
-                background-color: @red;
-                animation-name: blink;
-                animation-duration: 1s;
-                animation-timing-function: steps(12);
-                animation-iteration-count: infinite;
-                animation-direction: alternate;
-            }
+      #workspaces button.urgent {
+          background-color: @red;
+          animation-name: blink;
+          animation-duration: 1s;
+          animation-timing-function: steps(12);
+          animation-iteration-count: infinite;
+          animation-direction: alternate;
+      }
 
-            /* Clock */
-            #clock {
-                font-style: oblique;
-                opacity: 1;
-            }
+      /* Clock */
+      #clock {
+          font-style: oblique;
+          opacity: 1;
+      }
 
-            /* Modules */
-            .modules-left,
-            .modules-right,
-            .modules-center {
-                background-color: @crust;
-            }
+      /* Modules */
+      .modules-left,
+      .modules-right,
+      .modules-center {
+          background-color: @crust;
+      }
 
-            /* Tray */
-            #tray>.needs-attention {
-                background-color: @red;
-            }
+      /* Tray */
+      #tray>.needs-attention {
+          background-color: @red;
+      }
 
-            /* Custom */
-            #custom-spotify:hover {
-                background-color: @green;
-            }
+      /* Custom */
+      #custom-spotify:hover {
+          background-color: @green;
+      }
 
-            #network:hover {
-                background-color: @sky;
-            }
+      #network:hover {
+          background-color: @sky;
+      }
 
-            #custom-notifications:hover {
-                background-color: @sapphire;
-            }
+      #custom-notifications:hover {
+          background-color: @sapphire;
+      }
 
-            /* Battery */
-            #battery {
-                background-color: @base;
-            }
+      /* Battery */
+      #battery {
+          background-color: @base;
+      }
 
-            #battery.warning:not(.charging) {
-                background: @yellow;
-                color: @foreground;
-                animation-name: blink;
-                animation-duration: 1s;
-                animation-timing-function: steps(12);
-                animation-iteration-count: infinite;
-                animation-direction: alternate;
-            }
+      #battery.warning:not(.charging) {
+          background: @yellow;
+          color: @foreground;
+          animation-name: blink;
+          animation-duration: 1s;
+          animation-timing-function: steps(12);
+          animation-iteration-count: infinite;
+          animation-direction: alternate;
+      }
 
-            #battery.charging,
-            #battery.plugged {
-                color: @foreground;
-                background-color: @green;
-            }
+      #battery.charging,
+      #battery.plugged {
+          color: @foreground;
+          background-color: @green;
+      }
 
-            #battery.critical:not(.charging) {
-                background-color: @red;
-                color: @foreground;
-                animation-name: blink;
-                animation-duration: 1s;
-                animation-timing-function: steps(12);
-                animation-iteration-count: infinite;
-                animation-direction: alternate;
-            }
+      #battery.critical:not(.charging) {
+          background-color: @red;
+          color: @foreground;
+          animation-name: blink;
+          animation-duration: 1s;
+          animation-timing-function: steps(12);
+          animation-iteration-count: infinite;
+          animation-direction: alternate;
+      }
 
-            @keyframes blink {
-                to {
-                    background-color: #ff0000;
-                    color: #000000;
-                }
-            }
+      @keyframes blink {
+          to {
+              background-color: #ff0000;
+              color: #000000;
+          }
+      }
     '';
 
   };
