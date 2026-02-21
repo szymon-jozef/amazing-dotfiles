@@ -1,9 +1,9 @@
-{ pkgs, lib, ... }:
+{ lib, ... }:
 
 {
   programs.kitty = lib.mkForce {
     enable = true;
-    package = pkgs.runCommand "dummy-kitty" { } "mkdir $out";
+    package = null;
     settings = {
       confirm_os_window_close = 0;
       dynamic_background_opacity = true;

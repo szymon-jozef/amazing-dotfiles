@@ -33,6 +33,7 @@
     ./modules/git.nix
     ./modules/kitty.nix
     ./modules/satty.nix
+    ./modules/ashell.nix
   ];
 
   home.stateVersion = "25.11"; # Please read the comment before changing.
@@ -43,7 +44,6 @@
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
-    ".config/ashell/config.toml".source = ./dotfiles/ashell/config.toml;
     ".config/fastfetch".source = ./dotfiles/fastfetch;
     ".config/kitty".source = ./dotfiles/kitty;
     ".config/MangoHud".source = ./dotfiles/mangohud;
