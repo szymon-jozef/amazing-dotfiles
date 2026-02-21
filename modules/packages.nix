@@ -16,7 +16,6 @@
     grim
     slurp
     wl-clipboard
-    mako
     bc
   ];
 }
