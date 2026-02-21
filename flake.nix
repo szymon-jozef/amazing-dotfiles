@@ -7,7 +7,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     catppuccin.url = "github:catppuccin/nix";
   };
 
@@ -20,7 +19,7 @@
     }:
 
     let
-      user = "szymon";
+      username = "szymon";
       # for git
       email = "szymon_jozef@proton.me";
       full_name = "Szymon P";
@@ -30,10 +29,8 @@
         "arch" = home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs { system = "x86_64-linux"; };
           extraSpecialArgs = {
+            inherit username email full_name;
             isNixOS = false;
-            username = user;
-            email = email;
-            full_name = full_name;
           };
           modules = [
             ./home.nix
@@ -44,10 +41,8 @@
         "nixos" = home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs { system = "x86_64-linux"; };
           extraSpecialArgs = {
+            inherit username email full_name;
             isNixOS = true;
-            username = user;
-            email = email;
-            full_name = full_name;
           };
           modules = [
             ./home.nix
