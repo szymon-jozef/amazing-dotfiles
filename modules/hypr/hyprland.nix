@@ -311,108 +311,116 @@
     };
 
     extraConfig = ''
-      windowrule {
-          name = pavucontrol-float
-          match:class = ^(org.pulseaudio.pavucontrol)$
-          float =  1
-          size = 80% 60%
-          stay_focused = 1
-          center = 1
-          pin = 1
-      }
+       windowrule {
+           name = pavucontrol-float
+           match:class = ^(org.pulseaudio.pavucontrol)$
+           float =  1
+           size = 80% 60%
+           stay_focused = 1
+           center = 1
+           pin = 1
+       }
 
-      windowrule {
-          name = share-picker-float
-          match:class = ^(hyprland-share-picker)$
-          float = 1
-          center = 1
-          pin = 1
-      }
+       windowrule {
+           name = share-picker-float
+           match:class = ^(hyprland-share-picker)$
+           float = 1
+           center = 1
+           pin = 1
+       }
 
-      windowrule {
-          name = steam-friends-list
-          match:title = ^(Lista znajomych)$
-          float = 1
-          center = 1
-          size = 40% 60%
-      }
+       windowrule {
+           name = steam-friends-list
+           match:title = ^(Lista znajomych)$
+           float = 1
+           center = 1
+           size = 40% 60%
+       }
 
-      windowrule {
-          name = vesktop-dont-focus-pls
-          match:class = ^(vesktop)$
-          no_initial_focus = 1
-          focus_on_activate = 0
-          render_unfocused = 1
-      }
+       windowrule {
+           name = vesktop-dont-focus-pls
+           match:class = ^(vesktop)$
+           no_initial_focus = 1
+           focus_on_activate = 0
+           render_unfocused = 1
+       }
 
-      windowrule {
-          name = xdg-desktop-portal-gtk
-          match:class = ^(xdg-desktop-portal-gtk)$
-          float = 1
-          center = 1
-          size = 55% 50%
-      }
+       windowrule {
+           name = xdg-desktop-portal-gtk
+           match:class = ^(xdg-desktop-portal-gtk)$
+           float = 1
+           center = 1
+           size = 55% 50%
+       }
 
-      windowrule {
-          name = picture-in-picture
-          match:title = ^(Obraz w obrazie)$
-          pseudo = 1
-          no_initial_focus = 1
-      }
+       windowrule {
+           name = picture-in-picture
+           match:title = ^(Obraz w obrazie)$
+           pseudo = 1
+           no_initial_focus = 1
+       }
 
-      windowrule {
-          name = login-google-zen
-          match:title = ^(Logowanie – Konta Google — Zen Browser)$
-          float = 1
-          center = 1
-      }
+       windowrule {
+           name = login-google-zen
+           match:title = ^(Logowanie – Konta Google — Zen Browser)$
+           float = 1
+           center = 1
+       }
 
-      windowrule {
-          name = prism-launcher
-          match:class = ^(org.prismlauncher.PrismLauncher)$
-          workspace = 3
-      }
+       windowrule {
+           name = prism-launcher
+           match:class = ^(org.prismlauncher.PrismLauncher)$
+           workspace = 3
+       }
 
-      windowrule {
-          name = gamescope
-          match:class = ^(gamescope)$
-          workspace = 3
-      }
+       windowrule {
+           name = gamescope
+           match:class = ^(gamescope)$
+           workspace = 3
+       }
 
+       monitorv2 {
+           output = DP-1
+           mode = 2560x1440@180.06
+           position = 0x0
+           scale = 1
+           vrr = 1
+           supports_wide_color = 1
+           bitdepth = 10
+           sdr_min_luminance = 0.005
+           sdr_max_luminance = 220
+           cm = hdr
+           supports_hdr = 1
+       }
+
+       monitorv2 {
+           output = DP-2
+           mode = 1920x1080@144
+           position = auto-left
+           vrr = 1
+           scale = 1.0
+       }
+
+       monitorv2 {
+           output = HDMI-A-2
+           mode = highres
+           position = auto-up
+           scale = 1
+       }
+
+      # for laptop
       monitorv2 {
-          output = DP-1
-          mode = 2560x1440@180.06
-          position = 0x0
-          scale = 1
-          vrr = 1
-          supports_wide_color = 1
-          bitdepth = 10
-          sdr_min_luminance = 0.005
-          sdr_max_luminance = 220
-          cm = hdr
-          supports_hdr = 1
-      }
+           output = eDP-1
+           mode = highres
+           position = 0x0
+           scale = 1
+       }
 
-      monitorv2 {
-          output = DP-2
-          mode = 1920x1080@144
-          position = auto-left
-          vrr = 1
-          scale = 1.0
-      }
-
-      monitorv2 {
-          output = HDMI-A-2
-          mode = highres
-          position = auto-up
-          scale = 1
-      }
-
-      monitorv2 {
-          output = 
-          position = auto-right
-          scale = 1
-      }
+       monitorv2 {
+           output = 
+           position = auto-right
+           scale = 1
+       }
     '';
   };
 }
