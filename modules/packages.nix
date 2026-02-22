@@ -12,6 +12,7 @@
     fd
     duf
     gdu
+    jq
     tealdeer
     grim
     slurp
