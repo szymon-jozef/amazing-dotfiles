@@ -63,6 +63,16 @@
     ".local/bin".source = ./scripts;
   };
 
+  # XDG
+  xdg.portal.config = {
+    common = {
+      default = [
+        "hyprland"
+        "gtk"
+      ];
+    };
+  };
+
   # === VARS ===
 
   home.sessionVariables = {
