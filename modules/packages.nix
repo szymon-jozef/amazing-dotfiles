@@ -3,6 +3,7 @@
 {
   home.packages = with pkgs; [
     libnotify
+    cliphist
     gh
     trash-cli
     pandoc
