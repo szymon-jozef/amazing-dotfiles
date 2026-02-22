@@ -49,6 +49,9 @@
     ./modules/hypr/hypridle.nix
     ./modules/hypr/hyprlock.nix
     ./modules/hypr/hyprsunset.nix
+    # other stuff
+    ./modules/xdg.nix
+    ./modules/desktop.nix
   ];
 
   # === DOTFILES IMPORT ===
@@ -64,13 +67,19 @@
   };
 
   # XDG
-  xdg.portal.config = {
-    common = {
-      default = [
-        "hyprland"
-        "gtk"
-      ];
-    };
+
+  xdg.desktopEntries.x = {
+    name = "X";
+    genericName = "Social Media Client";
+    comment = "Open X (twitter)";
+    exec = "uwsm app -- chromium --app=https://x.com";
+    icon = "twitter";
+    terminal = false;
+    categories = [
+      "Network"
+      "WebBrowser"
+      "X-Social"
+    ];
   };
 
   # === VARS ===
