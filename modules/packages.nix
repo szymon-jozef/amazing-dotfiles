@@ -14,7 +14,6 @@
     tealdeer
     grim
     slurp
-    wl-clipboard
     bc
     nh
   ];

@@ -16,9 +16,10 @@
         initial-tool = "crop";
         output-filename = "/home/${username}/Obrazy/zrzuty/%d-%m-%Y_%H:%M:%S.png";
         save-after-copy = true;
+        copy-command = "wl-copy";
         disable-notifications = false;
         actions-on-escape = [ "exit" ];
-        action-on-enter = "save-to-clipboard";
+        actions-on-enter = [ "save-to-clipboard" ];
         no-window-decoration = true;
       };
 

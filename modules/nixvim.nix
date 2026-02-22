@@ -160,15 +160,21 @@
       lsp = {
         enable = true;
         servers = {
+          # script
           lua_ls.enable = true;
+          # web
+          cssls.enable = true;
+          html.enable = true;
+          # dev
           clangd.enable = true;
-          nil_ls.enable = true;
           pyright.enable = true;
           rust_analyzer = {
             enable = true;
             installCargo = true;
             installRustc = true;
           };
+          # nix
+          nil_ls.enable = true;
         };
         keymaps = {
           lspBuf = {
@@ -184,6 +190,20 @@
       lsp-format.enable = true;
 
       luasnip.enable = true;
+
+      treesitter = {
+        enable = true;
+        settings = {
+          highlight.enable = true;
+          indent.enable = false;
+        };
+      };
+
+      indent-blankline = {
+        enable = true;
+        settings.scope.enabled = true;
+      };
+
       cmp = {
         enable = true;
         settings = {
@@ -207,5 +227,15 @@
         };
       };
     };
+
+    extraConfigLua = ''
+      vim.diagnostic.config({
+        virtual_text = {
+          prefix = "●",
+          spacing = 2,
+          source = "if_many",
+        }
+      });
+    '';
   };
 }

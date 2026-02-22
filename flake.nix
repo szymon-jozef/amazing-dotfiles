@@ -40,7 +40,7 @@
           modules = [
             ./home.nix
             catppuccin.homeModules.catppuccin
-            nixvim.homeManagerModules.nixvim
+            nixvim.homeModules.nixvim
           ];
 
         };

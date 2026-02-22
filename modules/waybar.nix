@@ -151,7 +151,6 @@
                 player="$1"
 
                 ${playerctl} -p "$player" metadata --format "{{status}} {{artist}} - {{title}}" --follow | while read -r line; do
-                  # Nix wymaga ''${ dla zmiennych basha w stringach nixowych
                   current_status=$(${playerctl} --player="$player" status 2>/dev/null)
                   
                   case "$current_status" in
@@ -192,126 +191,128 @@
       };
     };
 
-    style = ''
+    style =
+      #css
+      ''
 
-      /* Global styles */
-      * {
-          transition: 0.2s all ease-in-out;
-          font-size: 14px;
-          font-family: inherit;
-          padding: 3px;
-          margin: 1px 2px;
-          color: @text;
-          border-radius: 12px;
-      }
+        /* Global styles */
+        * {
+            transition: 0.2s all ease-in-out;
+            font-size: 14px;
+            font-family: inherit;
+            padding: 3px;
+            margin: 1px 2px;
+            color: @text;
+            border-radius: 12px;
+        }
 
-      *:hover {
-          text-shadow: none;
-      }
+        *:hover {
+            text-shadow: none;
+        }
 
-      /* Window */
-      window#waybar {
-          background-color: @base;
-          border-radius: 15px;
-      }
+        /* Window */
+        window#waybar {
+            background-color: @base;
+            border-radius: 15px;
+        }
 
-      /* Workspaces */
-      #workspaces button {
-          padding: 2px;
-          margin: 1px;
-          background: transparent;
-          color: @lavender;
-          box-shadow: inset 0 1.5px;
-      }
+        /* Workspaces */
+        #workspaces button {
+            padding: 2px;
+            margin: 1px;
+            background: transparent;
+            color: @lavender;
+            box-shadow: inset 0 1.5px;
+        }
 
-      #workspaces button:hover {
-          background-color: @surface1;
-          box-shadow: inset 2px 5px;
-      }
+        #workspaces button:hover {
+            background-color: @surface1;
+            box-shadow: inset 2px 5px;
+        }
 
-      #workspaces button.active {
-          background-color: @surface0;
-          box-shadow: inset 1px 4px 0 1px;
-      }
+        #workspaces button.active {
+            background-color: @surface0;
+            box-shadow: inset 1px 4px 0 1px;
+        }
 
-      #workspaces button.urgent {
-          background-color: @red;
-          animation-name: blink;
-          animation-duration: 1s;
-          animation-timing-function: steps(12);
-          animation-iteration-count: infinite;
-          animation-direction: alternate;
-      }
+        #workspaces button.urgent {
+            background-color: @red;
+            animation-name: blink;
+            animation-duration: 1s;
+            animation-timing-function: steps(12);
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
 
-      /* Clock */
-      #clock {
-          font-style: oblique;
-          opacity: 1;
-      }
+        /* Clock */
+        #clock {
+            font-style: oblique;
+            opacity: 1;
+        }
 
-      /* Modules */
-      .modules-left,
-      .modules-right,
-      .modules-center {
-          background-color: @crust;
-      }
+        /* Modules */
+        .modules-left,
+        .modules-right,
+        .modules-center {
+            background-color: @crust;
+        }
 
-      /* Tray */
-      #tray>.needs-attention {
-          background-color: @red;
-      }
+        /* Tray */
+        #tray>.needs-attention {
+            background-color: @red;
+        }
 
-      /* Custom */
-      #custom-spotify:hover {
-          background-color: @green;
-      }
+        /* Custom */
+        #custom-spotify:hover {
+            background-color: @green;
+        }
 
-      #network:hover {
-          background-color: @sky;
-      }
+        #network:hover {
+            background-color: @sky;
+        }
 
-      #custom-notifications:hover {
-          background-color: @sapphire;
-      }
+        #custom-notifications:hover {
+            background-color: @sapphire;
+        }
 
-      /* Battery */
-      #battery {
-          background-color: @base;
-      }
+        /* Battery */
+        #battery {
+            background-color: @base;
+        }
 
-      #battery.warning:not(.charging) {
-          background: @yellow;
-          color: @foreground;
-          animation-name: blink;
-          animation-duration: 1s;
-          animation-timing-function: steps(12);
-          animation-iteration-count: infinite;
-          animation-direction: alternate;
-      }
+        #battery.warning:not(.charging) {
+            background: @yellow;
+            color: @foreground;
+            animation-name: blink;
+            animation-duration: 1s;
+            animation-timing-function: steps(12);
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
 
-      #battery.charging,
-      #battery.plugged {
-          color: @foreground;
-          background-color: @green;
-      }
+        #battery.charging,
+        #battery.plugged {
+            color: @foreground;
+            background-color: @green;
+        }
 
-      #battery.critical:not(.charging) {
-          background-color: @red;
-          color: @foreground;
-          animation-name: blink;
-          animation-duration: 1s;
-          animation-timing-function: steps(12);
-          animation-iteration-count: infinite;
-          animation-direction: alternate;
-      }
+        #battery.critical:not(.charging) {
+            background-color: @red;
+            color: @foreground;
+            animation-name: blink;
+            animation-duration: 1s;
+            animation-timing-function: steps(12);
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
 
-      @keyframes blink {
-          to {
-              background-color: #ff0000;
-              color: #000000;
-          }
-      }
-    '';
+        @keyframes blink {
+            to {
+                background-color: #ff0000;
+                color: #000000;
+            }
+        }
+      '';
 
   };
 }
