@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 dir=$(find ~/Dokumenty/kodowanie/ -maxdepth 2 -type d ! -name '.*' | fzf)
 export EDITOR="nvim"

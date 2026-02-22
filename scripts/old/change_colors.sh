@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 declare -A blue
 blue[background]="rgba(36, 158, 202, 0.20)"

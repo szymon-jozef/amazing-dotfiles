@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 MUTED=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -iq muted; echo $?)
 

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 disturbed=$(makoctl mode | grep -i do-not-disturb) > /dev/null
 mute_icon=""
