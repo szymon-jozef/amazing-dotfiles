@@ -58,6 +58,18 @@ You need to have [home manager](https://nix-community.github.io/home-manager/ind
 3. Run this command to apply all the configurations for the first time `home-manager switch --flake .#nixos -b backup`. Make sure to be in the repo root. All your existing files will be backed up with `.backup` extension.
 4. Enjoy! Now you can use [nh](https://github.com/nix-community/nh). So for example to switch use `nh home switch . -c nixos --backup-extension backup`
 
+ 
+**ALSO MAKE SURE TO ENABLE HYPRLAND SYSTEM WIDE!!!!**
+```nix
+{
+  programs.hyprland = {
+    enable = true;
+    withUWSM = true;
+    xwayland.enable = true;
+  };
+}
+```
+
 ---
 
 I hope you'll enjoy it, if you for whatever reason want to try this random ass dotfiles found on the internet…
