@@ -8,7 +8,6 @@
     fzf
     eza
     fastfetch
-    neovim
     fd
     duf
     gdu

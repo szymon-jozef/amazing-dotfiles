@@ -28,6 +28,7 @@
     ./modules/packages.nix
     # cli tools
     ./modules/fish.nix
+    ./modules/nixvim.nix
     ./modules/yazi.nix
     ./modules/btop.nix
     ./modules/atuin.nix
@@ -48,7 +49,7 @@
   home.file = {
     ".config/fastfetch".source = ./dotfiles/fastfetch;
     ".config/MangoHud".source = ./dotfiles/mangohud;
-    ".config/nvim".source = ./dotfiles/nvim;
+    # ".config/nvim".source = ./dotfiles/nvim;
     ".config/gtk-3.0/settings.ini".source = ./dotfiles/gtk-3.0/settings.ini;
     ".config/gtk-4.0".source = ./dotfiles/gtk-4.0;
     ".config/hypr".source = ./dotfiles/hypr;
