@@ -24,7 +24,9 @@
   };
 
   imports = [
+    # general packages list
     ./modules/packages.nix
+    # cli tools
     ./modules/fish.nix
     ./modules/yazi.nix
     ./modules/btop.nix
@@ -34,8 +36,10 @@
     ./modules/ssh.nix
     ./modules/bat.nix
     ./modules/git.nix
+    # gui tools
     ./modules/kitty.nix
     ./modules/satty.nix
+    # status bars
     ./modules/ashell.nix
     ./modules/waybar.nix
   ];
