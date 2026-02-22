@@ -4,7 +4,6 @@
 My dotfiles managed with [home manager](https://github.com/nix-community/home-manager)
 
 # What's inside?
-### Configured with native nix
 * Ashell
 * Atuin
 * Bat
