@@ -1,0 +1,9 @@
+ashell
+waybar
+hyprland
+hyprlauncher
+hypridle
+hyprlock
+hyprsunset
+satty
+kitty

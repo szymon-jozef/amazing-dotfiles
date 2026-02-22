@@ -43,6 +43,12 @@
     # status bars
     ./modules/ashell.nix
     ./modules/waybar.nix
+    # hypr
+    ./modules/hypr/hyprland.nix
+    ./modules/hypr/hyprlauncher.nix
+    ./modules/hypr/hypridle.nix
+    ./modules/hypr/hyprlock.nix
+    ./modules/hypr/hyprsunset.nix
   ];
 
   # === DOTFILES IMPORT ===
@@ -52,7 +58,7 @@
     # ".config/nvim".source = ./dotfiles/nvim;
     ".config/gtk-3.0/settings.ini".source = ./dotfiles/gtk-3.0/settings.ini;
     ".config/gtk-4.0".source = ./dotfiles/gtk-4.0;
-    ".config/hypr".source = ./dotfiles/hypr;
+    # ".config/hypr".source = ./dotfiles/hypr;
     ".config/mimeapps.list".source = ./dotfiles/mimeapps.list;
     ".local/bin".source = ./scripts;
   };

@@ -166,6 +166,7 @@
           cssls.enable = true;
           html.enable = true;
           emmet_ls.enable = true;
+          friendly-snippets.enable = true;
           # dev
           clangd.enable = true;
           pyright.enable = true;
