@@ -2,6 +2,7 @@
 
 {
   home.packages = with pkgs; [
+    libnotify
     gh
     trash-cli
     pandoc

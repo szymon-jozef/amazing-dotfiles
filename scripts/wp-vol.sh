@@ -1,5 +1,5 @@
-#!/bin/bash
-
+#!/usr/bin/env bash
+#
 # Get the volume level and convert it to a percentage
 volume=$(wpctl get-volume @DEFAULT_SINK@)
 volume=$(echo "$volume" | awk '{print $2}')
