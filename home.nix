@@ -24,8 +24,10 @@
   };
 
   imports = [
-    # general packages list
+    # general
     ./modules/packages.nix
+    ./modules/xdg.nix
+    ./modules/desktop.nix
     # cli tools
     ./modules/cli/fish.nix
     ./modules/cli/nixvim.nix
@@ -41,6 +43,7 @@
     ./modules/gui/kitty.nix
     ./modules/gui/satty.nix
     ./modules/gui/mako.nix
+    ./modules/gui/mangohud.nix
     # status bars
     ./modules/bars/ashell.nix
     ./modules/bars/waybar.nix
@@ -50,34 +53,14 @@
     ./modules/hypr/hypridle.nix
     ./modules/hypr/hyprlock.nix
     ./modules/hypr/hyprsunset.nix
-    # other stuff
-    ./modules/xdg.nix
-    ./modules/desktop.nix
   ];
 
   # === DOTFILES IMPORT ===
   home.file = {
-    ".config/MangoHud".source = ./dotfiles/mangohud;
     ".config/gtk-3.0/settings.ini".source = ./dotfiles/gtk-3.0/settings.ini;
     ".config/gtk-4.0".source = ./dotfiles/gtk-4.0;
     ".config/mimeapps.list".source = ./dotfiles/mimeapps.list;
     ".local/bin".source = ./scripts;
-  };
-
-  # XDG
-
-  xdg.desktopEntries.x = {
-    name = "X";
-    genericName = "Social Media Client";
-    comment = "Open X (twitter)";
-    exec = "uwsm app -- chromium --app=https://x.com";
-    icon = "twitter";
-    terminal = false;
-    categories = [
-      "Network"
-      "WebBrowser"
-      "X-Social"
-    ];
   };
 
   # === VARS ===

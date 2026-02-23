@@ -96,7 +96,7 @@
       };
 
       permission = [
-        "/usr/bin/grim, screencopy, allow"
+        ".*(grim), screencopy, allow"
         "/usr/bin/hyprlock, screencopy, allow"
         "/usr/(lib|libexec|lib64)/xdg-desktop-portal-hyprland, screencopy, allow"
       ];
@@ -188,81 +188,83 @@
         "match:class ^(com.obsproject.Studio)$, workspace 10"
       ];
 
-      bind = [
-        # background
-        "$mainMod, V, exec, cliphist list | hyprlauncher -m | cliphist decode | wl-copy"
-        "$mainMod ALT_L, V, exec, cliphist wipe && notify-send \"Clipboard\" \"Clipboard cleared!\""
-        # power management
-        "$mainMod L_SHIFT ctrl, l, exec, hyprlock"
-        "$mainMod L_SHIFT ctrl, r, exec, openrgb -c black && systemctl reboot"
-        "$mainMod L_SHIFT ctrl, p, exec, openrgb -c black && systemctl poweroff"
-        "$mainMod L_SHIFT ctrl, s, exec, openrgb -c black && pidof hyprlock || sleep 1 && systemctl sleep"
-        "$mainMod L_SHIFT ctrl, m, exec, uwsm stop"
-        # zoom
-        "$mainMod alt, 0, exec, hyprctl -q keyword cursor:zoom_factor 1"
-        # focus management
-        "$mainMod, h, movefocus, l"
-        "$mainMod, l, movefocus, r"
-        "$mainMod, k, movefocus, u"
-        "$mainMod, j, movefocus, d"
-        "$mainMod, mouse_down, workspace, e+1"
-        "$mainMod, mouse_up, workspace, e-1"
-        "$mainMod L_SHIFT, right, exec, hyprctl dispatch movecurrentworkspacetomonitor +1"
-        "$mainMod L_SHIFT, left, exec, hyprctl dispatch movecurrentworkspacetomonitor -1"
-        # workspace management
-        "$mainMod, 1, workspace, 1"
-        "$mainMod, 2, workspace, 2"
-        "$mainMod, 3, workspace, 3"
-        "$mainMod, 4, workspace, 4"
-        "$mainMod, 5, workspace, 5"
-        "$mainMod, 6, workspace, 6"
-        "$mainMod, 7, workspace, 7"
-        "$mainMod, 8, workspace, 8"
-        "$mainMod, 9, workspace, 9"
-        "$mainMod, 0, workspace, 10"
-        # window management
-        "$mainMod SHIFT, 1, movetoworkspace, 1"
-        "$mainMod SHIFT, 2, movetoworkspace, 2"
-        "$mainMod SHIFT, 3, movetoworkspace, 3"
-        "$mainMod SHIFT, 4, movetoworkspace, 4"
-        "$mainMod SHIFT, 5, movetoworkspace, 5"
-        "$mainMod SHIFT, 6, movetoworkspace, 6"
-        "$mainMod SHIFT, 7, movetoworkspace, 7"
-        "$mainMod SHIFT, 8, movetoworkspace, 8"
-        "$mainMod SHIFT, 9, movetoworkspace, 9"
-        "$mainMod SHIFT, 0, movetoworkspace, 10"
-        # special workspace
-        "$mainMod, TAB, togglespecialworkspace, magic"
-        "$mainMod SHIFT, TAB, movetoworkspace, special:magic"
-        # layout
-        "$mainMod, S, layoutmsg, swapwithmaster"
-        "$mainMod, n, layoutmsg, swapnext"
-        "$mainMod, p, layoutmsg, swapprev"
-        # apps
-        "$mainMod, M, exec, [float] waypaper"
-        "$mainMod, RETURN, exec, [workspace 4] $terminal"
-        "$mainMod  CONTROL_L, RETURN, exec, $terminal"
-        "$mainMod, space , exec, $menu"
-        "$mainMod ALT_L, c, exec, openrgb -c $openrgb_color"
-        "$mainMod Control_L, s, exec,[workspace 1] signal-desktop --password-store=\"kwallet6\""
-        "$mainMod Control_L, s, focuswindow, class:^(signal)$"
-        "$mainMod Control_L, s, focuswindow, title:^(signal)$"
-        "$mainMod Control_L, v, sendshortcut, ctrl, k, class:^(vesktop)$"
-        "$mainMod Control_L, v, exec, uwsm app -- vesktop"
-        "$mainMod Control_L, v, focuswindow, class:^(vesktop)$"
-        "$mainMod Control_L, g, exec, uwsm app -- steam"
-        "$mainMod Control_L, g, focuswindow, class:^(steam)$"
-        "$mainMod Control_L, b, exec, uwsm app -- $browser"
-        "$mainMod Control_L, b, focuswindow, class:^(zen)$"
-        "$mainMod Control_L, n, exec, [workspace 6] uwsm app -- $notes"
-        "$mainMod Control_L, n, focuswindow, class:^(obsidian)$"
-        "$mainMod Control_L, m, exec, [workspace 9] uwsm app -- $music_player"
-        "$mainMod Control_L, f, exec, uwsm app -- freetube"
-        "$mainMod Control_L, f, focuswindow, class:^(freetube)$"
-        "$mainMod Control_L, x, exec, uwsm app -- ~/.local/share/applications/x.desktop"
-        "$mainMod Control_L, x, focuswindow, class:^(chrome-x.com__-Default)$"
-        "$mainMod CONTROL_L L_SHIFT, B, exec, killall ashell && uwsm app -- ashell"
-      ];
+      bind =
+        # hyprlang
+        [
+          # background
+          "$mainMod, V, exec, cliphist list | hyprlauncher -m | cliphist decode | wl-copy"
+          "$mainMod ALT_L, V, exec, cliphist wipe && notify-send \"Clipboard\" \"Clipboard cleared!\""
+          # power management
+          "$mainMod L_SHIFT ctrl, l, exec, hyprlock"
+          "$mainMod L_SHIFT ctrl, r, exec, openrgb -c black && systemctl reboot"
+          "$mainMod L_SHIFT ctrl, p, exec, openrgb -c black && systemctl poweroff"
+          "$mainMod L_SHIFT ctrl, s, exec, openrgb -c black && pidof hyprlock || sleep 1 && systemctl sleep"
+          "$mainMod L_SHIFT ctrl, m, exec, uwsm stop"
+          # zoom
+          "$mainMod alt, 0, exec, hyprctl -q keyword cursor:zoom_factor 1"
+          # focus management
+          "$mainMod, h, movefocus, l"
+          "$mainMod, l, movefocus, r"
+          "$mainMod, k, movefocus, u"
+          "$mainMod, j, movefocus, d"
+          "$mainMod, mouse_down, workspace, e+1"
+          "$mainMod, mouse_up, workspace, e-1"
+          "$mainMod L_SHIFT, right, exec, hyprctl dispatch movecurrentworkspacetomonitor +1"
+          "$mainMod L_SHIFT, left, exec, hyprctl dispatch movecurrentworkspacetomonitor -1"
+          # workspace management
+          "$mainMod, 1, workspace, 1"
+          "$mainMod, 2, workspace, 2"
+          "$mainMod, 3, workspace, 3"
+          "$mainMod, 4, workspace, 4"
+          "$mainMod, 5, workspace, 5"
+          "$mainMod, 6, workspace, 6"
+          "$mainMod, 7, workspace, 7"
+          "$mainMod, 8, workspace, 8"
+          "$mainMod, 9, workspace, 9"
+          "$mainMod, 0, workspace, 10"
+          # window management
+          "$mainMod SHIFT, 1, movetoworkspace, 1"
+          "$mainMod SHIFT, 2, movetoworkspace, 2"
+          "$mainMod SHIFT, 3, movetoworkspace, 3"
+          "$mainMod SHIFT, 4, movetoworkspace, 4"
+          "$mainMod SHIFT, 5, movetoworkspace, 5"
+          "$mainMod SHIFT, 6, movetoworkspace, 6"
+          "$mainMod SHIFT, 7, movetoworkspace, 7"
+          "$mainMod SHIFT, 8, movetoworkspace, 8"
+          "$mainMod SHIFT, 9, movetoworkspace, 9"
+          "$mainMod SHIFT, 0, movetoworkspace, 10"
+          # special workspace
+          "$mainMod, TAB, togglespecialworkspace, magic"
+          "$mainMod SHIFT, TAB, movetoworkspace, special:magic"
+          # layout
+          "$mainMod, S, layoutmsg, swapwithmaster"
+          "$mainMod, n, layoutmsg, swapnext"
+          "$mainMod, p, layoutmsg, swapprev"
+          # apps
+          "$mainMod, M, exec, [float] waypaper"
+          "$mainMod, RETURN, exec, [workspace 4] $terminal"
+          "$mainMod  CONTROL_L, RETURN, exec, $terminal"
+          "$mainMod, space , exec, $menu"
+          "$mainMod ALT_L, c, exec, openrgb -c $openrgb_color"
+          "$mainMod Control_L, s, exec,[workspace 1] signal-desktop --password-store=\"kwallet6\""
+          "$mainMod Control_L, s, focuswindow, class:^(signal)$"
+          "$mainMod Control_L, s, focuswindow, title:^(signal)$"
+          "$mainMod Control_L, v, sendshortcut, ctrl, k, class:^(vesktop)$"
+          "$mainMod Control_L, v, exec, uwsm app -- vesktop"
+          "$mainMod Control_L, v, focuswindow, class:^(vesktop)$"
+          "$mainMod Control_L, g, exec, uwsm app -- steam"
+          "$mainMod Control_L, g, focuswindow, class:^(steam)$"
+          "$mainMod Control_L, b, exec, uwsm app -- $browser"
+          "$mainMod Control_L, b, focuswindow, class:^(zen)$"
+          "$mainMod Control_L, n, exec, [workspace 6] uwsm app -- $notes"
+          "$mainMod Control_L, n, focuswindow, class:^(obsidian)$"
+          "$mainMod Control_L, m, exec, [workspace 9] uwsm app -- $music_player"
+          "$mainMod Control_L, f, exec, uwsm app -- freetube"
+          "$mainMod Control_L, f, focuswindow, class:^(freetube)$"
+          "$mainMod Control_L, x, exec, uwsm app -- ~/.local/share/applications/x.desktop"
+          "$mainMod Control_L, x, focuswindow, class:^(chrome-x.com__-Default)$"
+          "$mainMod CONTROL_L L_SHIFT, B, exec, killall ashell && uwsm app -- ashell"
+        ];
 
       binde = [
         "$mainMod alt, equal, exec, hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor | awk '/^float.*/ {print $2 * 1.1}')"
@@ -310,117 +312,119 @@
       ];
     };
 
-    extraConfig = ''
-       windowrule {
-           name = pavucontrol-float
-           match:class = ^(org.pulseaudio.pavucontrol)$
-           float =  1
-           size = 80% 60%
-           stay_focused = 1
-           center = 1
-           pin = 1
-       }
+    extraConfig =
+      #hyprlang
+      ''
+         windowrule {
+             name = pavucontrol-float
+             match:class = ^(org.pulseaudio.pavucontrol)$
+             float =  1
+             size = 80% 60%
+             stay_focused = 1
+             center = 1
+             pin = 1
+         }
 
-       windowrule {
-           name = share-picker-float
-           match:class = ^(hyprland-share-picker)$
-           float = 1
-           center = 1
-           pin = 1
-       }
+         windowrule {
+             name = share-picker-float
+             match:class = ^(hyprland-share-picker)$
+             float = 1
+             center = 1
+             pin = 1
+         }
 
-       windowrule {
-           name = steam-friends-list
-           match:title = ^(Lista znajomych)$
-           float = 1
-           center = 1
-           size = 40% 60%
-       }
+         windowrule {
+             name = steam-friends-list
+             match:title = ^(Lista znajomych)$
+             float = 1
+             center = 1
+             size = 40% 60%
+         }
 
-       windowrule {
-           name = vesktop-dont-focus-pls
-           match:class = ^(vesktop)$
-           no_initial_focus = 1
-           focus_on_activate = 0
-           render_unfocused = 1
-       }
+         windowrule {
+             name = vesktop-dont-focus-pls
+             match:class = ^(vesktop)$
+             no_initial_focus = 1
+             focus_on_activate = 0
+             render_unfocused = 1
+         }
 
-       windowrule {
-           name = xdg-desktop-portal-gtk
-           match:class = ^(xdg-desktop-portal-gtk)$
-           float = 1
-           center = 1
-           size = 55% 50%
-       }
+         windowrule {
+             name = xdg-desktop-portal-gtk
+             match:class = ^(xdg-desktop-portal-gtk)$
+             float = 1
+             center = 1
+             size = 55% 50%
+         }
 
-       windowrule {
-           name = picture-in-picture
-           match:title = ^(Obraz w obrazie)$
-           pseudo = 1
-           no_initial_focus = 1
-       }
+         windowrule {
+             name = picture-in-picture
+             match:title = ^(Obraz w obrazie)$
+             pseudo = 1
+             no_initial_focus = 1
+         }
 
-       windowrule {
-           name = login-google-zen
-           match:title = ^(Logowanie – Konta Google — Zen Browser)$
-           float = 1
-           center = 1
-       }
+         windowrule {
+             name = login-google-zen
+             match:title = ^(Logowanie – Konta Google — Zen Browser)$
+             float = 1
+             center = 1
+         }
 
-       windowrule {
-           name = prism-launcher
-           match:class = ^(org.prismlauncher.PrismLauncher)$
-           workspace = 3
-       }
+         windowrule {
+             name = prism-launcher
+             match:class = ^(org.prismlauncher.PrismLauncher)$
+             workspace = 3
+         }
 
-       windowrule {
-           name = gamescope
-           match:class = ^(gamescope)$
-           workspace = 3
-       }
+         windowrule {
+             name = gamescope
+             match:class = ^(gamescope)$
+             workspace = 3
+         }
 
-       monitorv2 {
-           output = DP-1
-           mode = 2560x1440@180.06
-           position = 0x0
-           scale = 1
-           vrr = 1
-           supports_wide_color = 1
-           bitdepth = 10
-           sdr_min_luminance = 0.005
-           sdr_max_luminance = 220
-           cm = hdr
-           supports_hdr = 1
-       }
+         monitorv2 {
+             output = DP-1
+             mode = 2560x1440@180.06
+             position = 0x0
+             scale = 1
+             vrr = 1
+             supports_wide_color = 1
+             bitdepth = 10
+             sdr_min_luminance = 0.005
+             sdr_max_luminance = 220
+             cm = hdr
+             supports_hdr = 1
+         }
 
-       monitorv2 {
-           output = DP-2
-           mode = 1920x1080@144
-           position = auto-left
-           vrr = 1
-           scale = 1.0
-       }
+         monitorv2 {
+             output = DP-2
+             mode = 1920x1080@144
+             position = auto-left
+             vrr = 1
+             scale = 1.0
+         }
 
-       monitorv2 {
-           output = HDMI-A-2
-           mode = highres
-           position = auto-up
-           scale = 1
-       }
+         monitorv2 {
+             output = HDMI-A-2
+             mode = highres
+             position = auto-up
+             scale = 1
+         }
 
-      # for laptop
-      monitorv2 {
-           output = eDP-1
-           mode = highres
-           position = 0x0
-           scale = 1
-       }
+        # for laptop
+        monitorv2 {
+             output = eDP-1
+             mode = highres
+             position = 0x0
+             scale = 1
+         }
 
-       monitorv2 {
-           output = 
-           position = auto-right
-           scale = 1
-       }
-    '';
+         monitorv2 {
+             output = 
+             position = auto-right
+             scale = 1
+         }
+      '';
   };
 }
