@@ -28,6 +28,7 @@
     ./modules/packages.nix
     ./modules/xdg.nix
     ./modules/desktop.nix
+    ./modules/gtk.nix
     # cli tools
     ./modules/cli/fish.nix
     ./modules/cli/nixvim.nix
@@ -53,21 +54,12 @@
     ./modules/hypr/hypridle.nix
     ./modules/hypr/hyprlock.nix
     ./modules/hypr/hyprsunset.nix
+    ./modules/hypr/hyprtoolkit.nix
   ];
 
   # === SCRIPTS IMPORT ===
   home.file = {
     ".local/bin".source = ./scripts;
-  };
-
-  gtk.enable = true;
-  dconf = {
-    enable = true;
-    settings = {
-      "org/gnome/desktop/interface" = {
-        color-scheme = "prefer-dark";
-      };
-    };
   };
 
   # === VARS ===
