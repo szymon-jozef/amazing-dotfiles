@@ -2,6 +2,9 @@
 
 {
   home.packages = with pkgs; [
+    waypaper
+    swww
+    gnupg
     libnotify
     cliphist
     gh

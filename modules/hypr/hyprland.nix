@@ -1,9 +1,20 @@
-{ isNixOS, lib, ... }:
+{
+  inputs,
+  pkgs,
+  isNixOS,
+  lib,
+  ...
+}:
 
 {
   wayland.windowManager.hyprland = {
     enable = true;
-    package = lib.mkIf (!isNixOS) null;
+    package =
+      if isNixOS then inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland else null;
+    portalPackage = lib.mkIf (
+      isNixOS
+    ) inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    xwayland.enable = true;
 
     settings = {
       "$mainMod" = "SUPER";
@@ -29,7 +40,7 @@
         "col.inactive_border" = "$overlay1";
         resize_on_border = false;
         allow_tearing = false;
-        layout = "dwindle";
+        layout = "scrolling";
       };
 
       animations = {

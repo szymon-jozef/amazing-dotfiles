@@ -2,6 +2,7 @@
   description = "Home manager config";
 
   inputs = {
+    hyprland.url = "github:hyprwm/Hyprland";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -21,7 +22,7 @@
       catppuccin,
       nixvim,
       ...
-    }:
+    }@inputs:
 
     let
       username = "szymon";
@@ -34,7 +35,12 @@
         "arch" = home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs { system = "x86_64-linux"; };
           extraSpecialArgs = {
-            inherit username email full_name;
+            inherit
+              username
+              email
+              full_name
+              inputs
+              ;
             isNixOS = false;
           };
           modules = [
@@ -47,7 +53,12 @@
         "nixos" = home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs { system = "x86_64-linux"; };
           extraSpecialArgs = {
-            inherit username email full_name;
+            inherit
+              username
+              email
+              full_name
+              inputs
+              ;
             isNixOS = true;
           };
           modules = [
