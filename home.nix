@@ -57,10 +57,18 @@
 
   # === DOTFILES IMPORT ===
   home.file = {
-    ".config/gtk-3.0/settings.ini".source = ./dotfiles/gtk-3.0/settings.ini;
-    ".config/gtk-4.0".source = ./dotfiles/gtk-4.0;
     ".config/mimeapps.list".source = ./dotfiles/mimeapps.list;
     ".local/bin".source = ./scripts;
+  };
+
+  gtk.enable = true;
+  dconf = {
+    enable = true;
+    settings = {
+      "org/gnome/desktop/interface" = {
+        color-scheme = "prefer-dark";
+      };
+    };
   };
 
   # === VARS ===

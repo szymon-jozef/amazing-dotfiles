@@ -97,8 +97,8 @@
 
       permission = [
         ".*(grim), screencopy, allow"
-        "/usr/bin/hyprlock, screencopy, allow"
-        "/usr/(lib|libexec|lib64)/xdg-desktop-portal-hyprland, screencopy, allow"
+        ".*(hyprlock), screencopy, allow"
+        ".*(xdg-desktop-portal-hyprland), screencopy, allow"
       ];
 
       input = {
