@@ -15,6 +15,7 @@ My dotfiles managed with [home manager](https://github.com/nix-community/home-ma
 * Hyprlauncher
 * Hyprlock
 * Hyprsunset
+* Hyprtoolkit
 * Kitty
 * Mako
 * Nixvim
