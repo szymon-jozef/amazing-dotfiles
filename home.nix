@@ -55,9 +55,8 @@
     ./modules/hypr/hyprsunset.nix
   ];
 
-  # === DOTFILES IMPORT ===
+  # === SCRIPTS IMPORT ===
   home.file = {
-    ".config/mimeapps.list".source = ./dotfiles/mimeapps.list;
     ".local/bin".source = ./scripts;
   };
 
