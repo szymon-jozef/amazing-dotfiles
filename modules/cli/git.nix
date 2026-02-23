@@ -1,7 +1,6 @@
 {
   pkgs,
-  full_name,
-  email,
+  userConfig,
   ...
 }:
 
@@ -14,8 +13,8 @@
     enable = true;
     settings = {
       user = {
-        name = full_name;
-        email = email;
+        name = userConfig.fullName;
+        email = userConfig.email;
       };
       init.defaultBranch = "master";
       push.autoSetupRemote = true;
@@ -23,7 +22,7 @@
     };
 
     signing = {
-      key = email;
+      key = userConfig.email;
       signByDefault = true;
     };
 

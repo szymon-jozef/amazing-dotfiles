@@ -1,12 +1,14 @@
 {
   pkgs,
-  username,
+  inputs,
+  userConfig,
+  pathConfig,
   ...
 }:
 
 {
-  home.username = username;
-  home.homeDirectory = "/home/${username}";
+  home.username = userConfig.username;
+  home.homeDirectory = "/home/${userConfig.username}";
 
   nix = {
     package = pkgs.nix;
@@ -60,6 +62,7 @@
   # === SCRIPTS IMPORT ===
   home.file = {
     ".local/bin".source = ./scripts;
+    ${pathConfig.wallpaper}.source = inputs.wallpapers;
   };
 
   # === VARS ===
