@@ -27,22 +27,23 @@
     # general packages list
     ./modules/packages.nix
     # cli tools
-    ./modules/fish.nix
-    ./modules/nixvim.nix
-    ./modules/yazi.nix
-    ./modules/btop.nix
-    ./modules/atuin.nix
-    ./modules/zoxide.nix
-    ./modules/mako.nix
-    ./modules/ssh.nix
-    ./modules/bat.nix
-    ./modules/git.nix
+    ./modules/cli/fish.nix
+    ./modules/cli/nixvim.nix
+    ./modules/cli/yazi.nix
+    ./modules/cli/btop.nix
+    ./modules/cli/atuin.nix
+    ./modules/cli/zoxide.nix
+    ./modules/cli/ssh.nix
+    ./modules/cli/bat.nix
+    ./modules/cli/git.nix
+    ./modules/cli/fastfetch.nix
     # gui tools
-    ./modules/kitty.nix
-    ./modules/satty.nix
+    ./modules/gui/kitty.nix
+    ./modules/gui/satty.nix
+    ./modules/gui/mako.nix
     # status bars
-    ./modules/ashell.nix
-    ./modules/waybar.nix
+    ./modules/bars/ashell.nix
+    ./modules/bars/waybar.nix
     # hypr
     ./modules/hypr/hyprland.nix
     ./modules/hypr/hyprlauncher.nix
@@ -56,12 +57,9 @@
 
   # === DOTFILES IMPORT ===
   home.file = {
-    ".config/fastfetch".source = ./dotfiles/fastfetch;
     ".config/MangoHud".source = ./dotfiles/mangohud;
-    # ".config/nvim".source = ./dotfiles/nvim;
     ".config/gtk-3.0/settings.ini".source = ./dotfiles/gtk-3.0/settings.ini;
     ".config/gtk-4.0".source = ./dotfiles/gtk-4.0;
-    # ".config/hypr".source = ./dotfiles/hypr;
     ".config/mimeapps.list".source = ./dotfiles/mimeapps.list;
     ".local/bin".source = ./scripts;
   };
