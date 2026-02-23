@@ -37,6 +37,7 @@
 
       appearance = {
         scale_factor = 1.2;
+        style = "Gradient";
         success_color = "#a6e3a1";
         text_color = "#cdd6f4";
         workspace_colors = [

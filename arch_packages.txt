@@ -7,3 +7,4 @@ hyprlock
 hyprsunset
 satty
 kitty
+mangohud
