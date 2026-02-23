@@ -24,7 +24,7 @@
 
     signing = {
       key = email;
-      signByDefault = true;
+      signByDefault = false;
     };
 
     ignores = [
