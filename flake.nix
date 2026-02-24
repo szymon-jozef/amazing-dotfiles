@@ -36,6 +36,8 @@
         # for git
         email = "szymon_jozef@proton.me";
         fullName = "Szymon P";
+        # your public ssh key
+        signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKxyiqawA95AlLjXGd99sQCVR2rDq2/D7PG/vz7sZv5G";
 
         pathConfig = {
           wallpaper = "Obrazy/tapety/catppuccin";

@@ -19,11 +19,13 @@
       init.defaultBranch = "master";
       push.autoSetupRemote = true;
       core.editor = "nvim";
+      gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
     };
 
     signing = {
-      key = userConfig.email;
+      key = userConfig.signingKey;
       signByDefault = true;
+      format = "ssh";
     };
 
     ignores = [
@@ -36,6 +38,10 @@
     ];
 
   };
+
+  home.file.".ssh/allowed_signers".text = ''
+    ${userConfig.email} ${userConfig.signingKey}
+  '';
 
   programs.delta = {
     enable = true;
