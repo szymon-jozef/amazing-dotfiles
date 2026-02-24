@@ -1,7 +1,7 @@
 {
   lib,
   isNixOS,
-  username,
+  userConfig,
   ...
 }:
 
@@ -14,7 +14,7 @@
         fullscreen = true;
         early-exit = true;
         initial-tool = "crop";
-        output-filename = "/home/${username}/Obrazy/zrzuty/%d-%m-%Y_%H:%M:%S.png";
+        output-filename = "/home/${userConfig.username}/Obrazy/zrzuty/%d-%m-%Y_%H:%M:%S.png";
         save-after-copy = true;
         copy-command = "wl-copy";
         disable-notifications = false;

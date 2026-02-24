@@ -1,7 +1,6 @@
 {
   pkgs,
-  full_name,
-  email,
+  userConfig,
   ...
 }:
 
@@ -14,17 +13,30 @@
     enable = true;
     settings = {
       user = {
-        name = full_name;
-        email = email;
+        name = userConfig.fullName;
+        email = userConfig.email;
       };
       init.defaultBranch = "master";
       push.autoSetupRemote = true;
-      core.editor = "nvim";
+
+      gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
+
+      pull.rebase = false;
+
+      merge.tool = "nvimdiff";
+      mergetool.prompt = false;
+      mergetool.keepBackup = false;
     };
 
     signing = {
+<<<<<<< HEAD
       key = email;
       signByDefault = false;
+=======
+      key = userConfig.signingKey;
+      signByDefault = true;
+      format = "ssh";
+>>>>>>> c77553344515b404d765c04e1e472dac1cf4bb94
     };
 
     ignores = [
@@ -37,6 +49,15 @@
     ];
 
   };
+
+  programs.gh = {
+    enable = true;
+    settings.git_protocol = "ssh";
+  };
+
+  home.file.".ssh/allowed_signers".text = ''
+    ${userConfig.email} ${userConfig.signingKey}
+  '';
 
   programs.delta = {
     enable = true;

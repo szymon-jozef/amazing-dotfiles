@@ -1,6 +1,7 @@
 {
   pkgs,
   isNixOS,
+  userConfig,
   ...
 }:
 
@@ -22,9 +23,7 @@
         reload_style_on_change = true;
         width = 70;
         output = [
-          "DP-1"
-          "eDP-1"
-          "LVDS-1"
+          userConfig.mainMonitor
         ];
 
         modules-left = [

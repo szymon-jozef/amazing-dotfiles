@@ -1,8 +1,14 @@
 {
+<<<<<<< HEAD
   inputs,
   pkgs,
   isNixOS,
   lib,
+=======
+  isNixOS,
+  lib,
+  userConfig,
+>>>>>>> c77553344515b404d765c04e1e472dac1cf4bb94
   ...
 }:
 
@@ -151,8 +157,7 @@
       "exec-once" = [
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
-        "uwsm app -- kdeconnect-indicator"
-        "uwsm app -- ashell"
+        "uwsm app -- ${userConfig.statusBar}"
         "swww-daemon"
         "openrgb -c $openrgb_color"
       ];

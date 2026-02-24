@@ -1,12 +1,13 @@
 {
   pkgs,
-  username,
+  inputs,
+  userConfig,
   ...
 }:
 
 {
-  home.username = username;
-  home.homeDirectory = "/home/${username}";
+  home.username = userConfig.username;
+  home.homeDirectory = "/home/${userConfig.username}";
 
   nix = {
     package = pkgs.nix;
@@ -40,11 +41,13 @@
     ./modules/cli/bat.nix
     ./modules/cli/git.nix
     ./modules/cli/fastfetch.nix
+    ./modules/cli/kdeconnect.nix
     # gui tools
     ./modules/gui/kitty.nix
     ./modules/gui/satty.nix
     ./modules/gui/mako.nix
     ./modules/gui/mangohud.nix
+    ./modules/gui/browsers.nix
     # status bars
     ./modules/bars/ashell.nix
     ./modules/bars/waybar.nix
@@ -60,6 +63,7 @@
   # === SCRIPTS IMPORT ===
   home.file = {
     ".local/bin".source = ./scripts;
+    ${userConfig.pathConfig.wallpaper}.source = inputs.wallpapers;
   };
 
   # === VARS ===

@@ -15,6 +15,7 @@ My dotfiles managed with [home manager](https://github.com/nix-community/home-ma
 * Hyprlauncher
 * Hyprlock
 * Hyprsunset
+* Hyprtoolkit
 * Kitty
 * Mako
 * Nixvim
@@ -44,15 +45,21 @@ As of today I'm using this repo with home manager. I'm still trying stuff out, b
 
 # How to use this?
 You need to have [home manager](https://nix-community.github.io/home-manager/index.xhtml#sec-install-standalone) installed. Install needs to be **standalone**. It may not work as NixOS module.
-## Arch Linux
+## Settings
+You need to edit `flake.nix` to match your preferences.
+- If you want to use git, login with `gh auth login`, generate ssh key and put the pub key in the flake. 
+- You also need to set your git credentials there
+- You can change the path of wallpaper dir.
+
+### Arch Linux
 0. If you're extra lazy you can use `install_nix_and_home_manager_on_arch.sh` script to install nix and home-manager. Just run it with `chmod +x ./install_nix_and_home_manager_on_arch.sh && ./install_nix_and_home_manager_on_arch.sh`
 1. Copy this repo to `~/.config/home-manager` or somewhere else.
 2. Make sure to change variable to your liking inside `flake.nix`. Especially your username and home path!
-3. Download all the dependencies `sudo yay -Syu --needed - < arch_packages.txt`. You can use any other aur helper if you want to, but be aware that regular pacman most likely won't work as `ashell` is not in regular repos yet.
+3. Download all the dependencies `yay -Syu --needed - < arch_packages.txt`. You can use any other aur helper if you want to, but be aware that regular pacman most likely won't work as `ashell` is not in regular repos yet.
 4. Run this command to apply all the configurations for the first time `home-manager switch --flake .#arch -b backup`. Make sure to be in the repo root. All your existing files will be backed up with `.backup` extension.
 5. Enjoy! Now you can use [nh](https://github.com/nix-community/nh). So for example to switch use `nh home switch . -c arch --backup-extension backup`
 
-## NixOS
+### NixOS
 1. Copy this repo to `~/.config/home-manager` or somewhere else.
 2. Make sure to change variable to your liking inside `flake.nix`. Especially your username and home path!
 3. Run this command to apply all the configurations for the first time `home-manager switch --flake .#nixos -b backup`. Make sure to be in the repo root. All your existing files will be backed up with `.backup` extension.

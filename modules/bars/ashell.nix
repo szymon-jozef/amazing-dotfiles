@@ -1,4 +1,10 @@
-{ lib, isNixOS, ... }:
+{
+  lib,
+  isNixOS,
+  userConfig,
+  pkgs,
+  ...
+}:
 
 {
   programs.ashell = {
@@ -6,7 +12,7 @@
     package = lib.mkIf (!isNixOS) null;
     settings = {
       outputs = {
-        Targets = [ "DP-1" ];
+        Targets = [ userConfig.mainMonitor ];
       };
       position = "Bottom";
       modules = {
@@ -21,11 +27,45 @@
           "MediaPlayer"
           "SystemInfo"
           [
+            "CustomNotifications"
             "Tray"
             "Settings"
           ]
         ];
       };
+
+      CustomModule = [
+        {
+          name = "CustomNotifications";
+          icon = "";
+          command = "${pkgs.writeShellScript "dnd-toggle" ''
+            if makoctl mode | grep -q do-not-disturb; then
+              makoctl mode -r do-not-disturb > /dev/null
+            else
+              makoctl mode -a do-not-disturb > /dev/null
+            fi
+            pkill -USR1 -f dnd-check 
+          ''}";
+          listen_cmd = "${pkgs.writeShellScript "dnd-check" ''
+            print_state() {
+              if makoctl mode | grep -q do-not-disturb; then
+                echo '{"alt":"dnd"}'
+              else
+                echo '{"alt":"none"}'
+              fi
+            }
+
+            trap print_state USR1
+
+            print_state
+
+            while true; do
+              sleep infinity & wait $!
+            done
+          ''}";
+          icons.dnd = "";
+        }
+      ];
 
       clock = {
         format = "%H:%M | %e.%m ";
