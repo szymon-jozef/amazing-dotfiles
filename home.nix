@@ -2,7 +2,6 @@
   pkgs,
   inputs,
   userConfig,
-  pathConfig,
   ...
 }:
 
@@ -62,7 +61,7 @@
   # === SCRIPTS IMPORT ===
   home.file = {
     ".local/bin".source = ./scripts;
-    ${pathConfig.wallpaper}.source = inputs.wallpapers;
+    ${userConfig.pathConfig.wallpaper}.source = inputs.wallpapers;
   };
 
   # === VARS ===

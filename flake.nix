@@ -36,9 +36,11 @@
         # for git
         email = "szymon_jozef@proton.me";
         fullName = "Szymon P";
-      };
-      pathConfig = {
-        wallpaper = "Obrazy/tapety/catppuccin";
+
+        pathConfig = {
+          wallpaper = "Obrazy/tapety/catppuccin";
+        };
+
       };
     in
     {
@@ -49,7 +51,6 @@
             inherit
               inputs
               userConfig
-              pathConfig
               ;
             isNixOS = false;
           };
@@ -66,7 +67,6 @@
             inherit
               inputs
               userConfig
-              pathConfig
               ;
             isNixOS = true;
           };
