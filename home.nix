@@ -41,6 +41,7 @@
     ./modules/cli/bat.nix
     ./modules/cli/git.nix
     ./modules/cli/fastfetch.nix
+    ./modules/cli/kdeconnect.nix
     # gui tools
     ./modules/gui/kitty.nix
     ./modules/gui/satty.nix

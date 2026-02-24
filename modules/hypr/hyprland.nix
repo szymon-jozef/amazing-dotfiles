@@ -145,7 +145,6 @@
       "exec-once" = [
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
-        "uwsm app -- kdeconnect-indicator"
         "uwsm app -- ${userConfig.statusBar}"
         "swww-daemon"
         "openrgb -c $openrgb_color"
