@@ -46,6 +46,7 @@
     ./modules/gui/satty.nix
     ./modules/gui/mako.nix
     ./modules/gui/mangohud.nix
+    ./modules/gui/browsers.nix
     # status bars
     ./modules/bars/ashell.nix
     ./modules/bars/waybar.nix
