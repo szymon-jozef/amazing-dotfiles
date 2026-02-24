@@ -20,6 +20,7 @@
       push.autoSetupRemote = true;
       core.editor = "nvim";
       gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
+      pull.rebase = false;
     };
 
     signing = {
