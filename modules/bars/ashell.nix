@@ -1,4 +1,9 @@
-{ lib, isNixOS, ... }:
+{
+  lib,
+  isNixOS,
+  userConfig,
+  ...
+}:
 
 {
   programs.ashell = {
@@ -6,7 +11,7 @@
     package = lib.mkIf (!isNixOS) null;
     settings = {
       outputs = {
-        Targets = [ "DP-1" ];
+        Targets = [ userConfig.mainMonitor ];
       };
       position = "Bottom";
       modules = {
