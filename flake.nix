@@ -42,7 +42,6 @@
         pathConfig = {
           wallpaper = "Obrazy/tapety/catppuccin";
         };
-
       };
     in
     {
