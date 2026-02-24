@@ -1,4 +1,9 @@
-{ isNixOS, lib, ... }:
+{
+  isNixOS,
+  lib,
+  userConfig,
+  ...
+}:
 
 {
   wayland.windowManager.hyprland = {
@@ -141,7 +146,7 @@
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
         "uwsm app -- kdeconnect-indicator"
-        "uwsm app -- ashell"
+        "uwsm app -- ${userConfig.statusBar}"
         "swww-daemon"
         "openrgb -c $openrgb_color"
       ];

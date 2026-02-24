@@ -40,6 +40,7 @@
         signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKxyiqawA95AlLjXGd99sQCVR2rDq2/D7PG/vz7sZv5G";
 
         mainMonitor = "DP-1";
+        statusBar = "ashell"; # available: ashell|waybar
 
         pathConfig = {
           wallpaper = "Obrazy/tapety/catppuccin";
