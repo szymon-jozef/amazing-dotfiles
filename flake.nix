@@ -38,7 +38,7 @@
         email = "szymon_jozef@proton.me";
         fullName = "Szymon P";
         # your public ssh key
-        signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKxyiqawA95AlLjXGd99sQCVR2rDq2/D7PG/vz7sZv5G";
+        signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILaITOo0cG6j0iQKpn7ldhfq9P0FVhGpwUqw2hf+Uhaq";
 
         mainMonitor = "DP-1"; # only for some applications: you still need to set hyprland monitors yourself!
         statusBar = "ashell"; # available: ashell|waybar
@@ -55,15 +55,8 @@
           pkgs = import nixpkgs { system = "x86_64-linux"; };
           extraSpecialArgs = {
             inherit
-<<<<<<< HEAD
-              username
-              email
-              full_name
-              inputs
-=======
               inputs
               userConfig
->>>>>>> c77553344515b404d765c04e1e472dac1cf4bb94
               ;
             isNixOS = false;
           };
@@ -78,15 +71,8 @@
           pkgs = import nixpkgs { system = "x86_64-linux"; };
           extraSpecialArgs = {
             inherit
-<<<<<<< HEAD
-              username
-              email
-              full_name
-              inputs
-=======
               inputs
               userConfig
->>>>>>> c77553344515b404d765c04e1e472dac1cf4bb94
               ;
             isNixOS = true;
           };

@@ -1,14 +1,9 @@
 {
-<<<<<<< HEAD
-  inputs,
-  pkgs,
-  isNixOS,
-  lib,
-=======
   isNixOS,
   lib,
   userConfig,
->>>>>>> c77553344515b404d765c04e1e472dac1cf4bb94
+  inputs,
+  pkgs,
   ...
 }:
 

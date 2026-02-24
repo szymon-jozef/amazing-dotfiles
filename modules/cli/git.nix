@@ -29,14 +29,9 @@
     };
 
     signing = {
-<<<<<<< HEAD
-      key = email;
-      signByDefault = false;
-=======
       key = userConfig.signingKey;
       signByDefault = true;
       format = "ssh";
->>>>>>> c77553344515b404d765c04e1e472dac1cf4bb94
     };
 
     ignores = [

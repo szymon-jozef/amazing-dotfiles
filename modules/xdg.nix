@@ -15,7 +15,11 @@
     defaultApplications = {
       "application/pdf" = [ "org.pwmt.zathura.desktop" ];
 
-      "text/html" = [ "zen.desktop" ];
+      "text/html" = [
+        "zen-beta.desktop"
+        "zen.desktop"
+        "chromium.desktop"
+      ];
       "application/xhtml+xml" = [ "zen.desktop" ];
       "x-scheme-handler/http" = [ "zen.desktop" ];
       "x-scheme-handler/https" = [ "zen.desktop" ];
