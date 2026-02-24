@@ -39,6 +39,11 @@
 
   };
 
+  programs.gh = {
+    enable = true;
+    settings.git_protocol = "ssh";
+  };
+
   home.file.".ssh/allowed_signers".text = ''
     ${userConfig.email} ${userConfig.signingKey}
   '';
