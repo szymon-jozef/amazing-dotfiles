@@ -2,10 +2,45 @@
   lib,
   isNixOS,
   userConfig,
+  pkgs,
   ...
 }:
 
+let
+  mako-dnd-script = pkgs.writeShellScriptBin "ashell-mako-dnd" ''
+    case $1 in
+      listen)
+        print_state() {
+          if makoctl mode | grep -q do-not-disturb; then
+            echo '{"alt":"dnd"}'
+          else
+            echo '{"alt":"none"}'
+          fi
+        }
+        
+        trap print_state USR1
+        
+        print_state
+        
+        while true; do
+          sleep infinity & wait $!
+        done
+        ;;
+        
+      toggle)
+        if makoctl mode | grep -q do-not-disturb; then
+          makoctl mode -r do-not-disturb > /dev/null
+        else
+          makoctl mode -a do-not-disturb > /dev/null
+        fi
+        
+        pkill -USR1 -f "ashell-mako-dnd listen"
+        ;;
+    esac
+  '';
+in
 {
+
   programs.ashell = {
     enable = true;
     package = lib.mkIf (!isNixOS) null;
@@ -26,11 +61,22 @@
           "MediaPlayer"
           "SystemInfo"
           [
+            "CustomNotifications"
             "Tray"
             "Settings"
           ]
         ];
       };
+
+      CustomModule = [
+        {
+          name = "CustomNotifications";
+          icon = "";
+          command = "${mako-dnd-script}/bin/ashell-mako-dnd toggle";
+          listen_cmd = "${mako-dnd-script}/bin/ashell-mako-dnd listen";
+          icons.dnd = "";
+        }
+      ];
 
       clock = {
         format = "%H:%M | %e.%m ";
