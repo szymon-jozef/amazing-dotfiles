@@ -31,6 +31,7 @@ My dotfiles managed with [home manager](https://github.com/nix-community/home-ma
 * Mimeapps
 * Catppuccin
 * Home Manager
+* Obsidian
 
 ## Screenshot
 ![Desktop screenshot](assets/screenshot.png)
