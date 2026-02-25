@@ -5,7 +5,21 @@
   pkgs,
   ...
 }:
+let
+  exe = pkg: bin: if isNixOS then "${pkg}/bin/${bin}" else "/usr/bin/${bin}";
 
+  jq = exe pkgs.jq "jq";
+  grim = exe pkgs.grim "grim";
+  satty = exe pkgs.satty "satty";
+  wl_copy = exe pkgs.wl-clipboard "wl-copy";
+  notify_send = exe pkgs.libnotify "notify-send";
+  xdg-desktop-portal-hyprland =
+    if isNixOS then
+      "${pkgs.xdg-desktop-portal-hyprland}/libexec/xdg-desktop-portal-hyprland"
+    else
+      "/usr/lib/xdg-desktop-portal-hyprland";
+  hyprlock = exe pkgs.hyprlock "hyprlock";
+in
 {
   wayland.windowManager.hyprland = {
     enable = true;
@@ -102,14 +116,9 @@
       };
 
       permission = [
-        "${if isNixOS then "^${pkgs.grim}/bin/grim$" else "^/usr/bin/grim$"}"
-        "^${if isNixOS then "${pkgs.hyprlock}/bin/hyprlock" else "/usr/bin/hyprlock"}$, screencopy, allow"
-        "^${
-          if isNixOS then
-            "${pkgs.xdg-desktop-portal-hyprland}/libexec/xdg-desktop-portal-hyprland"
-          else
-            "/usr/lib/xdg-desktop-portal-hyprland"
-        }$, screencopy, allow"
+        "^${grim}$, screencopy, allow"
+        "^${hyprlock}$, screencopy, allow"
+        "^${xdg-desktop-portal-hyprland}$, screencopy, allow"
       ];
 
       input = {
@@ -293,65 +302,32 @@
         ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_SOURCE@ toggle"
       ];
 
-      bindl = [
-        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_SINK@ toggle && ${pkgs.writeShellScript "check-muted" ''
-          MUTED=$(${
-            if isNixOS then "${pkgs.wireplumber}/bin/wpctl" else "/usr/bin/wpctl"
-          } get-volume @DEFAULT_AUDIO_SINK@ | ${pkgs.gnugrep}/bin/grep -iq muted; echo $?)
-
-          if [[ $MUTED -eq 0 ]]; then
-              ${pkgs.libnotify}/bin/notify-send "Audio muted" -a 'wp-vol' -t 1000
-          else
-              ${pkgs.libnotify}/bin/notify-send "Audio unmuted" -a 'wp-vol' -t 1000
-          fi
-        ''}"
-        ", XF86AudioNext, exec, playerctl next"
-        ", Pause, exec, playerctl play-pause"
-        "$mainMod, Pause, exec, playerctl play-pause --player spotify"
-        ", XF86AudioPlay, exec, playerctl play-pause"
-        ", XF86AudioPrev, exec, playerctl previous"
-      ];
-
       bindt = [
-        ", PRINT, exec, ${pkgs.writeShellScript "region" ''
-          "$mainMod, PRINT, exec, ${pkgs.writeShellScript "screenshot-region" ''
-            MONITOR=$(hyprctl monitors -j | ${
-              if isNixOS then "${pkgs.jq}/bin/jq" else "/usr/bin/jq"
-            } -r '.[] | select(.focused == true) | .name')
-            ${if isNixOS then "${pkgs.grim}/bin/grim" else "/usr/bin/grim"} -o "$MONITOR" - | ${
-              if isNixOS then "${pkgs.satty}/bin/satty" else "/usr/bin/satty"
-            } -f -
-          ''}"
+        ", PRINT, exec, ${pkgs.writeShellScript "screenshot-region" ''
+          MONITOR=$(hyprctl monitors -j | ${jq} -r '.[] | select(.focused == true) | .name')
+          ${grim} -o "$MONITOR" - | ${satty} -f -
         ''}"
 
         "$mainMod, PRINT, exec, ${pkgs.writeShellScript "screenshot-fullscreen" ''
-          target_path=${userConfig.pathConfig.screenshot}/$(date +'%d-%m-%Y_%H:%M:%S')
-          MONITOR=$(hyprctl monitors -j | ${
-            if isNixOS then "${pkgs.jq}/bin/jq" else "/usr/bin/jq"
-          } -r '.[] | select(.focused == true) | .name')            ${
-            if isNixOS then "${pkgs.grim}/bin/grim" else "/usr/bin/grim"
-          } -o "$MONITOR" "$target_path"
-          ${if isNixOS then "${pkgs.wl-clipboard}/bin/wl-copy" else "/usr/bin/wl-copy"} < "$target_path"
-          ${
-            if isNixOS then "${pkgs.libnotify}/bin/notify-send" else "/usr/bin/notify-send"
-          } -i "$target_path" -u low -a "Screenshot" "Screenshot fullscreen" "Saved and copied"
+          target_path="$HOME/${userConfig.pathConfig.screenshot}/$(date +'%d-%m-%Y_%H-%M-%S').png"
+          mkdir -p "$(dirname "$target_path")"
+
+          MONITOR=$(hyprctl monitors -j | ${jq} -r '.[] | select(.focused == true) | .name')
+
+          ${grim} -o "$MONITOR" "$target_path"
+          ${wl_copy} < "$target_path"
+          ${notify_send} -i "$target_path" -u low -a "Screenshot" "Screenshot fullscreen" "Saved and copied"
         ''}"
 
         "alt_l, PRINT, exec, ${pkgs.writeShellScript "screenshot-window" ''
-          target_path="~/${userConfig.pathConfig.screenshot}/$(date +'%d-%m-%Y_%H-%M-%S').png"
+          target_path="$HOME/${userConfig.pathConfig.screenshot}/$(date +'%d-%m-%Y_%H-%M-%S').png"
           mkdir -p "$(dirname "$target_path")"
 
-          GEOMETRY=$(hyprctl activewindow -j | ${
-            if isNixOS then "${pkgs.jq}/bin/jq" else "/usr/bin/jq"
-          } -r '"\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"')
+          GEOMETRY=$(hyprctl activewindow -j | ${jq} -r '"\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"')
 
-          ${if isNixOS then "${pkgs.grim}/bin/grim" else "/usr/bin/grim"} -g "$GEOMETRY" "$target_path"
-
-          ${if isNixOS then "${pkgs.wl-clipboard}/bin/wl-copy" else "/usr/bin/wl-copy"} < "$target_path"
-
-          ${
-            if isNixOS then "${pkgs.libnotify}/bin/notify-send" else "/usr/bin/notify-send"
-          } -i "$target_path" -u low -a "Screenshot" "Screenshot window" "Saved and copied"
+          ${grim} -g "$GEOMETRY" "$target_path"
+          ${wl_copy} < "$target_path"
+          ${notify_send} -i "$target_path" -u low -a "Screenshot" "Screenshot window" "Saved and copied"
         ''}"
       ];
 
