@@ -2,6 +2,7 @@
   isNixOS,
   lib,
   userConfig,
+  pkgs,
   ...
 }:
 
@@ -288,7 +289,17 @@
       ];
 
       bindl = [
-        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_SINK@ toggle && ~/.local/bin/check-if-muted.sh"
+        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_SINK@ toggle && ${pkgs.writeShellScript "check-muted" ''
+          MUTED=$(${
+            if isNixOS then "${pkgs.wireplumber}/bin/wpctl" else "/usr/bin/wpctl"
+          } get-volume @DEFAULT_AUDIO_SINK@ | ${pkgs.gnugrep}/bin/grep -iq muted; echo $?)
+
+          if [[ $MUTED -eq 0 ]]; then
+              ${pkgs.libnotify}/bin/notify-send "Audio muted" -a 'wp-vol' -t 1000
+          else
+              ${pkgs.libnotify}/bin/notify-send "Audio unmuted" -a 'wp-vol' -t 1000
+          fi
+        ''}"
         ", XF86AudioNext, exec, playerctl next"
         ", Pause, exec, playerctl play-pause"
         "$mainMod, Pause, exec, playerctl play-pause --player spotify"
