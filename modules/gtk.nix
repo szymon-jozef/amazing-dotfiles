@@ -1,7 +1,11 @@
 { ... }:
 
 {
-  gtk.enable = true;
+  gtk = {
+    enable = true;
+    colorScheme = "dark";
+  };
+
   dconf = {
     enable = true;
     settings = {
