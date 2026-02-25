@@ -45,7 +45,7 @@
                     
                     set -l rel_file (realpath --relative-to=$config_dir $file)
                     
-                    if home-manager switch --flake "$config_dir#${
+                    if nh home switch $config_dir -c ${
                       if isNixOS then "nixos" else "arch"
                     }" -b backup
                         git add -A
