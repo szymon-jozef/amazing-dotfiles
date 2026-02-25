@@ -2,6 +2,7 @@
   description = "Home manager config";
 
   inputs = {
+    hyprland.url = "github:hyprwm/Hyprland";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -37,16 +38,15 @@
         email = "szymon_jozef@proton.me";
         fullName = "Szymon P";
         # your public ssh key
-        signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKxyiqawA95AlLjXGd99sQCVR2rDq2/D7PG/vz7sZv5G";
+        signingKey = "~/.ssh/github.pub";
 
-        mainMonitor = "DP-1"; # only for some applications: you still need to set hyprland monitors yourself!
+        mainMonitor = "eDP-1"; # only for some applications: you still need to set hyprland monitors yourself!
         statusBar = "ashell"; # available: ashell|waybar
 
         pathConfig = {
           wallpaper = "Obrazy/tapety/catppuccin";
           screenshot = "Obrazy/zrzuty/";
         };
-
       };
     in
     {
