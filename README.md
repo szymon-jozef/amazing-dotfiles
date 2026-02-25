@@ -150,6 +150,30 @@ You need to edit `flake.nix` to match your preferences.
 | **Volume Keys** | Change volume (+/- 5%) |
 | **Mic Mute Key** | Mute / Unmute microphone |
 
+# Default apps
+| Type | Application |
+| :--- | :--- |
+| Web Browser | Zen Browser |
+| Terminal | kitty |
+| Notes | Obsidian |
+| Music Player | Spotify |
+| App Launcher | hyprlauncher |
+| Signal | Signal-desktop |
+| Discord Client | Vesktop |
+| YouTube Client | FreeTube |
+| Gaming Platform | Steam |
+| Screen Recording | OBS Studio |
+| Image Editor | GIMP |
+| Wallpaper Picker | Waypaper / swww |
+| Screenshot Tool | grim (capture) & satty (editor) |
+| Screen Locker | hyprlock |
+| Clipboard Manager | cliphist & wl-clipboard |
+| RGB Lighting Control | OpenRGB |
+| Audio Volume Control | pavucontrol |
+| Screen Color (Night Light) | hyprsunset |
+| Status bar | AShell |
+| Web Apps (PWAs) | Facebook, Twitter, ProtonMail |
+
 ---
 
 I hope you'll enjoy it, if you for whatever reason want to try this random ass dotfiles found on the internet…
