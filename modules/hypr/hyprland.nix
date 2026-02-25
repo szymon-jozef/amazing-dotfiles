@@ -19,6 +19,7 @@ let
     else
       "/usr/lib/xdg-desktop-portal-hyprland";
   hyprlock = exe pkgs.hyprlock "hyprlock";
+  playerctl = exe pkgs.playerctl "playerctl";
 in
 {
   wayland.windowManager.hyprland = {
@@ -329,6 +330,9 @@ in
           ${wl_copy} < "$target_path"
           ${notify_send} -i "$target_path" -u low -a "Screenshot" "Screenshot window" "Saved and copied"
         ''}"
+
+        ", PAUSE, exec, ${playerctl} play-pause"
+        "$mainMod, PAUSE, exec, ${playerctl} play-pause --player spotify"
       ];
 
       bindm = [
