@@ -38,7 +38,7 @@
         email = "szymon_jozef@proton.me";
         fullName = "Szymon P";
         # your public ssh key
-        signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILaITOo0cG6j0iQKpn7ldhfq9P0FVhGpwUqw2hf+Uhaq";
+        signingKey = "~/.ssh/github.pub";
 
         mainMonitor = "eDP-1"; # only for some applications: you still need to set hyprland monitors yourself!
         statusBar = "ashell"; # available: ashell|waybar
