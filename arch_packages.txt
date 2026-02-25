@@ -8,3 +8,5 @@ hyprsunset
 satty
 kitty
 mangohud
+brave-bin
+zen-browser-bin
