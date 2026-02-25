@@ -102,9 +102,14 @@
       };
 
       permission = [
-        ".*(grim), screencopy, allow"
-        ".*(hyprlock), screencopy, allow"
-        ".*(xdg-desktop-portal-hyprland), screencopy, allow"
+        "${if isNixOS then "^${pkgs.grim}/bin/grim$" else "^/usr/bin/grim$"}"
+        "^${if isNixOS then "${pkgs.hyprlock}/bin/hyprlock" else "/usr/bin/hyprlock"}$, screencopy, allow"
+        "^${
+          if isNixOS then
+            "${pkgs.xdg-desktop-portal-hyprland}/libexec/xdg-desktop-portal-hyprland"
+          else
+            "/usr/lib/xdg-desktop-portal-hyprland"
+        }$, screencopy, allow"
       ];
 
       input = {
@@ -308,9 +313,46 @@
       ];
 
       bindt = [
-        ", PRINT, exec, ~/.local/bin/screenshot.sh region"
-        "$mainMod, PRINT, exec, ~/.local/bin/screenshot.sh fullscreen"
-        "alt_l, PRINT, exec, ~/.local/bin/screenshot.sh window"
+        ", PRINT, exec, ${pkgs.writeShellScript "region" ''
+          "$mainMod, PRINT, exec, ${pkgs.writeShellScript "screenshot-region" ''
+            MONITOR=$(hyprctl monitors -j | ${
+              if isNixOS then "${pkgs.jq}/bin/jq" else "/usr/bin/jq"
+            } -r '.[] | select(.focused == true) | .name')
+            ${if isNixOS then "${pkgs.grim}/bin/grim" else "/usr/bin/grim"} -o "$MONITOR" - | ${
+              if isNixOS then "${pkgs.satty}/bin/satty" else "/usr/bin/satty"
+            } -f -
+          ''}"
+        ''}"
+
+        "$mainMod, PRINT, exec, ${pkgs.writeShellScript "screenshot-fullscreen" ''
+          target_path=${userConfig.pathConfig.screenshot}/$(date +'%d-%m-%Y_%H:%M:%S')
+          MONITOR=$(hyprctl monitors -j | ${
+            if isNixOS then "${pkgs.jq}/bin/jq" else "/usr/bin/jq"
+          } -r '.[] | select(.focused == true) | .name')            ${
+            if isNixOS then "${pkgs.grim}/bin/grim" else "/usr/bin/grim"
+          } -o "$MONITOR" "$target_path"
+          ${if isNixOS then "${pkgs.wl-clipboard}/bin/wl-copy" else "/usr/bin/wl-copy"} < "$target_path"
+          ${
+            if isNixOS then "${pkgs.libnotify}/bin/notify-send" else "/usr/bin/notify-send"
+          } -i "$target_path" -u low -a "Screenshot" "Screenshot fullscreen" "Saved and copied"
+        ''}"
+
+        "alt_l, PRINT, exec, ${pkgs.writeShellScript "screenshot-window" ''
+          target_path="~/${userConfig.pathConfig.screenshot}/$(date +'%d-%m-%Y_%H-%M-%S').png"
+          mkdir -p "$(dirname "$target_path")"
+
+          GEOMETRY=$(hyprctl activewindow -j | ${
+            if isNixOS then "${pkgs.jq}/bin/jq" else "/usr/bin/jq"
+          } -r '"\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"')
+
+          ${if isNixOS then "${pkgs.grim}/bin/grim" else "/usr/bin/grim"} -g "$GEOMETRY" "$target_path"
+
+          ${if isNixOS then "${pkgs.wl-clipboard}/bin/wl-copy" else "/usr/bin/wl-copy"} < "$target_path"
+
+          ${
+            if isNixOS then "${pkgs.libnotify}/bin/notify-send" else "/usr/bin/notify-send"
+          } -i "$target_path" -u low -a "Screenshot" "Screenshot window" "Saved and copied"
+        ''}"
       ];
 
       bindm = [

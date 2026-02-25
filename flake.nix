@@ -44,6 +44,7 @@
 
         pathConfig = {
           wallpaper = "Obrazy/tapety/catppuccin";
+          screenshot = "Obrazy/zrzuty/";
         };
 
       };
