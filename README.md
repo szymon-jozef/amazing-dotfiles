@@ -1,7 +1,7 @@
 ![Nix](https://img.shields.io/badge/Nix-unstable-blue.svg?logo=nixos&logoColor=white)
 ![Home Manager](https://img.shields.io/badge/Home_Manager-enabled-brightgreen.svg)
 # My even cooler than previous dotfiles!
-My dotfiles managed with [home manager](https://github.com/nix-community/home-manager)
+My dotfiles managed with [home manager](https://github.com/nix-community/home-manager), using [catppuccin mocha](https://catppuccin.com/palette/) color scheme!
 
 # What's inside?
 * Ashell

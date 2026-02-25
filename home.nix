@@ -63,6 +63,8 @@
   # === SCRIPTS IMPORT ===
   home.file = {
     ".local/bin".source = ./scripts;
+    ".config/gtk-3.0/colors.css".source = ./dotfiles/gtk-3.0/colors.css;
+    ".config/gtk-3.0/gtk.css".source = ./dotfiles/gtk-3.0/gtk.css;
     ${userConfig.pathConfig.wallpaper}.source = inputs.wallpapers;
   };
 

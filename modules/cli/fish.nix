@@ -45,9 +45,7 @@
                     
                     set -l rel_file (realpath --relative-to=$config_dir $file)
                     
-                    if home-manager switch --flake "$config_dir#${
-                      if isNixOS then "nixos" else "arch"
-                    }" -b backup
+                    if nh home switch $config_dir -c ${if isNixOS then "nixos" else "arch"}
                         git add -A
                         set commit_msg "update: $rel_file"
                         git commit -m "$commit_msg"
@@ -59,6 +57,11 @@
                 popd 
             end
           '';
+      };
+
+      reload_dotfiles = {
+        body = # fish
+          "nh home switch ~/.config/home-manager -c ${if isNixOS then "nixos" else "arch"}";
       };
 
       ls = {

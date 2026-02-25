@@ -1,4 +1,4 @@
-{ ... }:
+{ isNixOS, pkgs, ... }:
 
 {
   services.mako = {
@@ -20,7 +20,11 @@
       border-color = "#89b4fa";
       progress-color = "over #313244";
       output = "DP-1";
-      on-notify = "exec paplay /usr/share/sounds/freedesktop/stereo/dialog-information.oga";
+      on-notify =
+        if isNixOS then
+          "exec ${pkgs.pulseaudio}/bin/paplay ${pkgs.sound-theme-freedesktop}/share/sounds/freedesktop/stereo/dialog-information.oga"
+        else
+          "exec paplay /usr/share/sounds/freedesktop/stereo/dialog-information.oga";
     };
 
     extraConfig = ''
@@ -31,7 +35,13 @@
       border-color=#FF6347
 
       [urgency=critical]
-      on-notify=exec paplay /usr/share/sounds/freedesktop/stereo/window-attention.oga
+      on-notify =
+        ${
+          if isNixOS then
+            "exec ${pkgs.pulseaudio}/bin/paplay ${pkgs.sound-theme-freedesktop}/share/sounds/freedesktop/stereo/dialog-information.oga"
+          else
+            "exec paplay /usr/share/sounds/freedesktop/stereo/dialog-information.oga"
+        };
       border-color=#FF0000
 
       [mode=do-not-disturb]
