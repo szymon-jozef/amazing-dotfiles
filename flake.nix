@@ -49,11 +49,16 @@
           obsidian = "Dokumenty/obsidian";
         };
       };
+
+      system = "x86_64-linux";
     in
     {
       homeConfigurations = {
         "arch" = home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs { system = "x86_64-linux"; };
+          pkgs = import nixpkgs {
+            inherit system;
+            config.allowUnfree = true;
+          };
           extraSpecialArgs = {
             inherit
               inputs
@@ -69,7 +74,10 @@
 
         };
         "nixos" = home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs { system = "x86_64-linux"; };
+          pkgs = import nixpkgs {
+            inherit system;
+            config.allowUnfree = true;
+          };
           extraSpecialArgs = {
             inherit
               inputs
