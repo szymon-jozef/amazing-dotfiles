@@ -1,31 +1,44 @@
 { ... }:
 
-{
-  xdg.desktopEntries = {
-    x = {
-      name = "X";
-      genericName = "Social Media Client";
-      comment = "Open X (twitter)";
-      exec = "uwsm app -- chromium --app=https://x.com";
-      icon = "twitter";
+let
+  mkWebApp =
+    {
+      name,
+      url,
+      icon,
+      wmClass,
+    }:
+    {
+      inherit name icon;
+      genericName = "Web app";
+      comment = "Open ${name}";
+      exec = "uwsm app -- brave --app=https://${url}";
       terminal = false;
       categories = [
         "Network"
         "WebBrowser"
         "X-Social"
       ];
+      settings = {
+        StartupWMClass = wmClass;
+      };
+    };
+in
+{
+
+  xdg.desktopEntries = {
+    x = mkWebApp {
+      name = "X";
+      url = "x.com";
+      icon = "twitter";
+      wmClass = "brave-x.com__-Default";
     };
 
-    proton-mail = {
-      name = "Proton mail";
-      genericName = "Proton mail";
-      comment = "Open Proton Mail";
-      exec = "uwsm app -- chromium --app=https://mail.proton.me/u/0/inbox.com";
-      terminal = false;
-      categories = [ "Email" ];
-      settings = {
-        StartupWMClass = "proton-mail.com";
-      };
+    proton-mail = mkWebApp {
+      name = "Proton-mail";
+      url = "mail.proton.me/u/0/inbox.com";
+      icon = "proton-mail";
+      wmClass = "brave-mail.proton.me__u_0_inbox.com-Default";
     };
   };
 }

@@ -35,13 +35,12 @@
       border-color=#FF6347
 
       [urgency=critical]
-      on-notify =
-        ${
-          if isNixOS then
-            "exec ${pkgs.pulseaudio}/bin/paplay ${pkgs.sound-theme-freedesktop}/share/sounds/freedesktop/stereo/dialog-information.oga"
-          else
-            "exec paplay /usr/share/sounds/freedesktop/stereo/dialog-information.oga"
-        };
+      on-notify=${
+        if isNixOS then
+          "exec ${pkgs.pulseaudio}/bin/paplay ${pkgs.sound-theme-freedesktop}/share/sounds/freedesktop/stereo/dialog-information.oga"
+        else
+          "exec paplay /usr/share/sounds/freedesktop/stereo/dialog-information.oga"
+      }
       border-color=#FF0000
 
       [mode=do-not-disturb]

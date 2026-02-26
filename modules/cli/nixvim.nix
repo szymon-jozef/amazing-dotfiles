@@ -177,6 +177,8 @@
           };
           # nix
           nil_ls.enable = true;
+          # other
+          marksman.enable = true;
         };
         keymaps = {
           lspBuf = {

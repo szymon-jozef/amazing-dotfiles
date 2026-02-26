@@ -199,7 +199,7 @@ in
         "match:class ^(zen)$, workspace 2"
         "match:class ^(com.github.IsmaelMartinez.teams_for_linux)$, workspace 2"
         "match:class ^(FreeTube)$, workspace 2"
-        "match:class ^(chrome-x.com__-Default)$, workspace 2"
+        "match:class ^(brave-x.com__-Default)$, workspace 2"
         "match:class ^(chrome-www.inoreader.com__all_articles-Default)$, workspace 2"
         "match:class ^(chrome-mail.proton.me__u_0_inbox.com-Default)$, workspace 2"
         "match:class ^(chrome-app.tuta.com__-Default)$, workspace 2"
@@ -287,7 +287,7 @@ in
           "$mainMod Control_L, m, exec, [workspace 9] uwsm app -- $music_player"
           "$mainMod Control_L, f, exec, uwsm app -- freetube"
           "$mainMod Control_L, f, focuswindow, class:^(freetube)$"
-          "$mainMod Control_L, x, exec, uwsm app -- ~/.local/share/applications/x.desktop"
+          "$mainMod Control_L, x, exec, uwsm app -- ~/.nix-profile/share/applications/x.desktop"
           "$mainMod Control_L, x, focuswindow, class:^(chrome-x.com__-Default)$"
           "$mainMod CONTROL_L L_SHIFT, B, exec, killall ashell && uwsm app -- ashell"
         ];
