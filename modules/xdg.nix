@@ -1,5 +1,13 @@
 { ... }:
 
+let
+  browserFallback = [
+    "zen-beta.desktop"
+    "zen.desktop"
+    "brave.desktop"
+    "chromium.desktop"
+  ];
+in
 {
   xdg.portal.config = {
     common = {
@@ -15,16 +23,16 @@
     defaultApplications = {
       "application/pdf" = [ "org.pwmt.zathura.desktop" ];
 
-      "text/html" = [ "zen.desktop" ];
-      "application/xhtml+xml" = [ "zen.desktop" ];
-      "x-scheme-handler/http" = [ "zen.desktop" ];
-      "x-scheme-handler/https" = [ "zen.desktop" ];
-      "x-scheme-handler/chrome" = [ "zen.desktop" ];
-      "application/x-extension-htm" = [ "zen.desktop" ];
-      "application/x-extension-html" = [ "zen.desktop" ];
-      "application/x-extension-shtml" = [ "zen.desktop" ];
-      "application/x-extension-xht" = [ "zen.desktop" ];
-      "application/x-extension-xhtml" = [ "zen.desktop" ];
+      "text/html" = browserFallback;
+      "application/xhtml+xml" = browserFallback;
+      "x-scheme-handler/http" = browserFallback;
+      "x-scheme-handler/https" = browserFallback;
+      "x-scheme-handler/chrome" = browserFallback;
+      "application/x-extension-htm" = browserFallback;
+      "application/x-extension-html" = browserFallback;
+      "application/x-extension-shtml" = browserFallback;
+      "application/x-extension-xht" = browserFallback;
+      "application/x-extension-xhtml" = browserFallback;
 
       "audio/*" = [ "mpv.desktop" ];
       "audio/mpeg" = [ "mpv.desktop" ];
