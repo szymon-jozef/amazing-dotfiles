@@ -39,4 +39,17 @@
       "x-scheme-handler/tuta" = [ "tutanota-desktop.desktop" ];
     };
   };
+
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
+    desktop = null;
+    documents = "$HOME/Dokumenty";
+    download = "$HOME/Pobrane";
+    music = null;
+    pictures = "$HOME/Obrazy";
+    videos = "$HOME/Video";
+    templates = null;
+    publicShare = null;
+  };
 }
