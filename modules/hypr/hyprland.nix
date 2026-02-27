@@ -3,6 +3,7 @@
   lib,
   userConfig,
   pkgs,
+  inputs,
   ...
 }:
 let
@@ -24,7 +25,12 @@ in
 {
   wayland.windowManager.hyprland = {
     enable = true;
-    package = lib.mkIf (!isNixOS) null;
+    package =
+      if isNixOS then inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland else null;
+    portalPackage = lib.mkIf (
+      isNixOS
+    ) inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    xwayland.enable = true;
 
     settings = {
       "$mainMod" = "SUPER";
@@ -50,7 +56,7 @@ in
         "col.inactive_border" = "$overlay1";
         resize_on_border = false;
         allow_tearing = false;
-        layout = "dwindle";
+        layout = if isNixOS then "scrolling" else "dwindle"; # i use hyprland-git on nixos
       };
 
       animations = {

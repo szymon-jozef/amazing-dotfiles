@@ -51,45 +51,45 @@
       };
 
       system = "x86_64-linux";
+      general_import = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
+
+      general_special_args = {
+        inherit
+          inputs
+          userConfig
+          ;
+      };
+
+      general_module_import = [
+        ./home.nix
+        catppuccin.homeModules.catppuccin
+        nixvim.homeModules.nixvim
+      ];
+
     in
     {
       homeConfigurations = {
         "arch" = home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs {
-            inherit system;
-            config.allowUnfree = true;
-          };
-          extraSpecialArgs = {
-            inherit
-              inputs
-              userConfig
-              ;
+          pkgs = general_import;
+
+          extraSpecialArgs = general_special_args // {
             isNixOS = false;
           };
-          modules = [
-            ./home.nix
-            catppuccin.homeModules.catppuccin
-            nixvim.homeModules.nixvim
-          ];
 
+          modules = general_module_import;
         };
+
         "nixos" = home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs {
-            inherit system;
-            config.allowUnfree = true;
-          };
-          extraSpecialArgs = {
-            inherit
-              inputs
-              userConfig
-              ;
+          pkgs = general_import;
+
+          extraSpecialArgs = general_special_args // {
             isNixOS = true;
           };
-          modules = [
-            ./home.nix
-            catppuccin.homeModules.catppuccin
-            nixvim.homeModules.nixvim
-          ];
+
+          modules = general_module_import;
         };
       };
     };
