@@ -32,7 +32,7 @@
     }@inputs:
 
     let
-      userConfig = {
+      baseUserConfig = {
         username = "szymon";
         # for git
         email = "szymon_jozef@proton.me";
@@ -40,7 +40,7 @@
         # your public ssh key
         signingKey = "~/.ssh/github.pub";
 
-        mainMonitor = "eDP-1"; # only for some applications: you still need to set hyprland monitors yourself!
+        mainMonitor = "DP-1"; # only for some applications: you still need to set hyprland monitors yourself!
         statusBar = "ashell"; # available: ashell|waybar
 
         pathConfig = {
@@ -51,16 +51,10 @@
       };
 
       system = "x86_64-linux";
+
       general_import = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
-      };
-
-      general_special_args = {
-        inherit
-          inputs
-          userConfig
-          ;
       };
 
       general_module_import = [
@@ -69,27 +63,58 @@
         nixvim.homeModules.nixvim
       ];
 
-    in
-    {
-      homeConfigurations = {
-        "arch" = home-manager.lib.homeManagerConfiguration {
+      mkHomeConfig =
+        {
+          isNixOS,
+          overrides ? { },
+          hostName,
+        }:
+        home-manager.lib.homeManagerConfiguration {
           pkgs = general_import;
 
-          extraSpecialArgs = general_special_args // {
-            isNixOS = false;
+          extraSpecialArgs = {
+            inherit inputs isNixOS hostName;
+            userConfig = baseUserConfig // overrides;
           };
 
           modules = general_module_import;
         };
 
-        "nixos" = home-manager.lib.homeManagerConfiguration {
-          pkgs = general_import;
+    in
+    {
+      homeConfigurations = {
+        "arch" = mkHomeConfig {
+          isNixOS = false;
+          hostName = "arch";
+        };
 
-          extraSpecialArgs = general_special_args // {
-            isNixOS = true;
+        "nixos" = mkHomeConfig {
+          isNixOS = true;
+          hostName = "nixos";
+        };
+
+        "pitagoras" = mkHomeConfig {
+          isNixOS = true;
+          overrides = {
+            mainMonitor = "eDP-1";
           };
+          hostName = "pitagoras";
+        };
 
-          modules = general_module_import;
+        "pilecki" = mkHomeConfig {
+          isNixOS = true;
+          overrides = {
+            mainMonitor = "LVDS-1";
+          };
+          hostName = "pilecki";
+        };
+
+        "paderewski" = mkHomeConfig {
+          isNixOS = false;
+          overrides = {
+            mainMonitor = "DP-1";
+          };
+          hostName = "paderewski";
         };
       };
     };

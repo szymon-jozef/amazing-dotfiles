@@ -1,4 +1,4 @@
-{ isNixOS, ... }:
+{ isNixOS, hostName, ... }:
 
 {
   programs.fish = {
@@ -45,7 +45,7 @@
                     
                     set -l rel_file (realpath --relative-to=$config_dir $file)
                     
-                    if nh home switch $config_dir -c ${if isNixOS then "nixos" else "arch"}
+                    if nh home switch $config_dir -c ${hostName}
                         git add -A
                         set commit_msg "update: $rel_file"
                         git commit -m "$commit_msg"
@@ -61,7 +61,7 @@
 
       reload_dotfiles = {
         body = # fish
-          "nh home switch ~/.config/home-manager -c ${if isNixOS then "nixos" else "arch"}";
+          "nh home switch ~/.config/home-manager -c ${hostName}";
       };
 
       ls = {
