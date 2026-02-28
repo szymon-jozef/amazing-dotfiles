@@ -296,8 +296,10 @@ in
       binde = [
         "$mainMod alt, equal, exec, hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor | awk '/^float.*/ {print $2 * 1.1}')"
         "$mainMod alt, minus, exec, hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor | awk '/^float.*/ {print $2 * 0.9}')"
-        "$mainMod L_SHIFT, l, layoutmsg, colresize, 10"
-        "$mainMod L_SHIFT, h,layoutmsg, colresize, -10"
+        "$mainMod L_SHIFT, l, colresize, 10 0"
+        "$mainMod L_SHIFT, h, colresize, -10 0"
+        "$mainMod L_SHIFT, k, colresize, 0 -10"
+        "$mainMod L_SHIFT, j, colresize, 0 10"
       ];
 
       bindel = [
