@@ -295,10 +295,10 @@ in
       binde = [
         "$mainMod alt, equal, exec, hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor | awk '/^float.*/ {print $2 * 1.1}')"
         "$mainMod alt, minus, exec, hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor | awk '/^float.*/ {print $2 * 0.9}')"
-        "$mainMod L_SHIFT, l, resizeactive, 10 0"
-        "$mainMod L_SHIFT, h, resizeactive, -10 0"
-        "$mainMod L_SHIFT, k, resizeactive, 0 -10"
-        "$mainMod L_SHIFT, j, resizeactive, 0 10"
+        "$mainMod L_SHIFT, l, colresize, 10 0"
+        "$mainMod L_SHIFT, h, colresize, -10 0"
+        "$mainMod L_SHIFT, k, colresize, 0 -10"
+        "$mainMod L_SHIFT, j, colresize, 0 10"
       ];
 
       bindel = [
@@ -349,8 +349,8 @@ in
       bindd = [
         "$mainMod, F, Make app fullscreen, fullscreen"
         "$mainMod, T, Toggle floating, togglefloating"
-        "$mainMod, P, Toggle pseudo, pseudo"
-        "$mainMod, S, Toggle split, togglesplit"
+        "$mainMod, S, layoutmsg, swapsplit"
+        "$mainMod, S, layoutmsg, togglesplit"
         "$mainMod, Q, Kill active window, killactive"
       ];
     };
