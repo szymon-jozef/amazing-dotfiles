@@ -56,7 +56,7 @@ in
         "col.inactive_border" = "$overlay1";
         resize_on_border = false;
         allow_tearing = false;
-        layout = if isNixOS then "scrolling" else "dwindle"; # i use hyprland-git on nixos
+        layout = "scrolling";
       };
 
       animations = {
