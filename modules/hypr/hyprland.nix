@@ -56,7 +56,7 @@ in
         "col.inactive_border" = "$overlay1";
         resize_on_border = false;
         allow_tearing = false;
-        layout = if isNixOS then "scrolling" else "dwindle"; # i use hyprland-git on nixos
+        layout = "scrolling";
       };
 
       animations = {
@@ -174,6 +174,7 @@ in
 
       workspace = [
         "1, monitor:DP-2"
+        "1, layout: dwindle"
         "2, monitor:DP-1"
         "3, monitor:DP-1"
         "4, monitor:DP-1"
@@ -350,8 +351,8 @@ in
       bindd = [
         "$mainMod, F, Make app fullscreen, fullscreen"
         "$mainMod, T, Toggle floating, togglefloating"
-        "$mainMod, P, Toggle pseudo, pseudo"
-        "$mainMod, S, Toggle split, togglesplit"
+        "$mainMod, S, layoutmsg, swapsplit"
+        "$mainMod, C, layoutmsg, togglesplit"
         "$mainMod, Q, Kill active window, killactive"
       ];
     };
