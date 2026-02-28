@@ -174,6 +174,7 @@ in
 
       workspace = [
         "1, monitor:DP-2"
+        "1, layout: dwindle"
         "2, monitor:DP-1"
         "3, monitor:DP-1"
         "4, monitor:DP-1"
