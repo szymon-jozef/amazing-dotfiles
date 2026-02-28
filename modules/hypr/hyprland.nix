@@ -38,7 +38,7 @@ in
       "$menu" = "hyprlauncher";
       "$music_player" = "flatpak run com.spotify.Client";
       "$notes" = "obsidian";
-      "$browser" = "zen-browser";
+      "$browser" = if isNixOS then "zen-beta" else "zen-browser"; # beta on nixos
       "$openrgb_color" = "09ce30";
 
       env = [
@@ -197,6 +197,7 @@ in
         "match:class ^(vesktop)$, workspace 1 silent"
         "match:class ^(chrome-facebook.com__-Default)$, workspace 1"
         "match:class ^(zen)$, workspace 2"
+        "match:class ^(zen-beta)$, workspace 2"
         "match:class ^(com.github.IsmaelMartinez.teams_for_linux)$, workspace 2"
         "match:class ^(FreeTube)$, workspace 2"
         "match:class ^(brave-x.com__-Default)$, workspace 2"
