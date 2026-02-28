@@ -348,7 +348,7 @@ in
         "$mainMod, F, Make app fullscreen, fullscreen"
         "$mainMod, T, Toggle floating, togglefloating"
         "$mainMod, S, layoutmsg, swapsplit"
-        "$mainMod, S, layoutmsg, swapcol, r"
+        "$mainMod, S, layoutmsg, swapcol r"
         "$mainMod, C, layoutmsg, togglesplit"
         "$mainMod, P, layoutmsg, promote"
         "$mainMod, Q, Kill active window, killactive"
