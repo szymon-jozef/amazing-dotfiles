@@ -19,6 +19,8 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    hyprcursor-phinger.url = "github:jappie3/hyprcursor-phinger";
   };
 
   outputs =
@@ -61,6 +63,7 @@
         ./home.nix
         catppuccin.homeModules.catppuccin
         nixvim.homeModules.nixvim
+        inputs.hyprcursor-phinger.homeManagerModules.hyprcursor-phinger
       ];
 
       mkHomeConfig =
