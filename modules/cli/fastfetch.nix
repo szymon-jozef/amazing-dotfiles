@@ -36,7 +36,7 @@
 
   xdg.configFile."fastfetch/startup.jsonc".text = builtins.toJSON {
     logo = {
-      source = "arch_small";
+      source = "nixos_small";
       padding = {
         bottom = 1;
       };

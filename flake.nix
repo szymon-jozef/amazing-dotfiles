@@ -122,7 +122,7 @@
           overrides = {
             mainMonitor = "DP-1";
           };
-          hostName = "paderewski";
+          hostName = "paderewski-nix";
         };
       };
     };

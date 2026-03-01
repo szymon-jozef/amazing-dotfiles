@@ -36,7 +36,7 @@ in
       "$mainMod" = "SUPER";
       "$terminal" = "uwsm app -- kitty";
       "$menu" = "hyprlauncher";
-      "$music_player" = "flatpak run com.spotify.Client";
+      "$music_player" = if isNixOS then "spotify" else "flatpak run com.spotify.Client";
       "$notes" = "obsidian";
       "$browser" = if isNixOS then "zen-beta" else "zen-browser"; # beta on nixos
       "$openrgb_color" = "09ce30";
