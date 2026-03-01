@@ -116,6 +116,14 @@
           };
           hostName = "paderewski";
         };
+
+        "paderewski-nix" = mkHomeConfig {
+          isNixOS = true;
+          overrides = {
+            mainMonitor = "DP-1";
+          };
+          hostName = "paderewski";
+        };
       };
     };
 }
