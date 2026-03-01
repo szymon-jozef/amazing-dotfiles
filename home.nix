@@ -71,10 +71,20 @@
 
   # === VARS ===
 
-  home.sessionVariables = {
-    EDITOR = "nvim";
-    VISUAL = "nvim";
-    XDG_DATA_DIRS = "$HOME/.nix-profile/share/applications:$XDG_DATA_DIRS";
+  home = {
+    sessionVariables = {
+      EDITOR = "nvim";
+      VISUAL = "nvim";
+      XDG_DATA_DIRS = "$HOME/.nix-profile/share/applications:$XDG_DATA_DIRS";
+    };
+
+    pointerCursor = {
+      name = "phinger-cursors-light";
+      package = pkgs.phinger-cursors;
+      size = 24;
+      gtk.enable = true;
+      x11.enable = true;
+    };
   };
 
   programs.home-manager.enable = true;
