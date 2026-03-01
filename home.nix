@@ -68,6 +68,7 @@
     ".config/gtk-3.0/gtk.css".source = ./dotfiles/gtk-3.0/gtk.css;
     ${userConfig.pathConfig.wallpaper}.source = inputs.wallpapers;
   };
+  programs.hyprcursor-phinger.enable = true;
 
   # === VARS ===
 
