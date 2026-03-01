@@ -85,38 +85,64 @@
       };
 
       update = {
-        body = # fish
-          ''
-            echo "===System update==="
+        body =
+          if isNixOS then
+            # fish
+            ''
+              echo "=== System packages update==="
+              pushd /etc/nixos
+              nix flake update
+              reload_system
+              popd
 
-            if not type -q yay
-              echo "Yay not found… Is this Arch? If yes, then please consider installing it!"
-            else
-              yay
-            end
+              echo "===User packages update==="
+              pushd $HOME/.config/home-manager
+              nix flake update
+              reload_dotfiles
+              popd
 
-            if type -q pacman
-                echo "===Remove orphans==="
-                set orphans (pacman -Qtdq)
-                if test (count $orphans) -gt 0
-                    sudo pacman -Rns $orphans
-                end
-            end
 
-            if type -q flatpak
-                echo "===Flatpak update==="
-                flatpak update --noninteractive
-                echo "===Flatpak remove unused==="
-                flatpak uninstall --unused
-            end
+              echo "=== Flatpak update==="
+              if type -q flatpak
+                  echo "===Flatpak update==="
+                  flatpak update --noninteractive
+                  echo "===Flatpak remove unused==="
+                  flatpak uninstall --unused
+              end
+            ''
+          else
+            # fish
+            ''
+              echo "===System update==="
 
-            if type -q nix-channel
-                echo "===Nix update==="
-                nix-channel --update
-                echo "===Nix garbage collection==="
-                home-manager expire-generations "-7 days"
-            end
-          '';
+              if not type -q yay
+                echo "Yay not found… Please consider installing it!"
+              else
+                yay
+              end
+
+              if type -q pacman
+                  echo "===Remove orphans==="
+                  set orphans (pacman -Qtdq)
+                  if test (count $orphans) -gt 0
+                      sudo pacman -Rns $orphans
+                  end
+              end
+
+              if type -q flatpak
+                  echo "===Flatpak update==="
+                  flatpak update --noninteractive
+                  echo "===Flatpak remove unused==="
+                  flatpak uninstall --unused
+              end
+
+              if type -q nix-channel
+                  echo "===Nix update==="
+                  nix-channel --update
+                  echo "===Nix garbage collection==="
+                  home-manager expire-generations "-7 days"
+              end
+            '';
       };
 
       rm = {

@@ -100,6 +100,14 @@
         action.__raw = "function() require('harpoon'):list():next() end";
         options.desc = "Toggle next harpoon buffer";
       }
+      {
+        key = "j";
+        action= "jzz";
+      }
+      {
+        key = "k";
+        action= "kzz";
+      }
     ];
 
     autoGroups = {
@@ -203,9 +211,14 @@
         };
       };
 
-      indent-blankline = {
+      cursorline = {
         enable = true;
-        settings.scope.enabled = true;
+        timeout = 0;
+      };
+
+      mini-indentscope = {
+        enable = true;
+        settings.draw.delay = 0;
       };
 
       cmp = {
