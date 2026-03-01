@@ -61,7 +61,12 @@
 
       reload_dotfiles = {
         body = # fish
-          "nh home switch ~/.config/home-manager -c ${hostName}";
+          "nh home switch ~/.config/home-manager";
+      };
+
+      reload_system = {
+        body = # fish
+          "nh os switch /etc/nixos/";
       };
 
       ls = {

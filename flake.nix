@@ -93,7 +93,7 @@
           hostName = "nixos";
         };
 
-        "pitagoras" = mkHomeConfig {
+        "${baseUserConfig.username}@pitagoras" = mkHomeConfig {
           isNixOS = true;
           overrides = {
             mainMonitor = "eDP-1";
@@ -101,7 +101,7 @@
           hostName = "pitagoras";
         };
 
-        "pilecki" = mkHomeConfig {
+        "${baseUserConfig.username}@pilecki" = mkHomeConfig {
           isNixOS = true;
           overrides = {
             mainMonitor = "LVDS-1";
@@ -109,7 +109,7 @@
           hostName = "pilecki";
         };
 
-        "paderewski" = mkHomeConfig {
+        "${baseUserConfig.username}@paderewski" = mkHomeConfig {
           isNixOS = false;
           overrides = {
             mainMonitor = "DP-1";
@@ -117,7 +117,7 @@
           hostName = "paderewski";
         };
 
-        "paderewski-nix" = mkHomeConfig {
+        "${baseUserConfig.username}@paderewski-nix" = mkHomeConfig {
           isNixOS = true;
           overrides = {
             mainMonitor = "DP-1";
