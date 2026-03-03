@@ -45,7 +45,7 @@
                     
                     set -l rel_file (realpath --relative-to=$config_dir $file)
                     
-                    if nh home switch $config_dir -c ${hostName}
+                    if nh home switch $config_dir
                         git add -A
                         set commit_msg "update: $rel_file"
                         git commit -m "$commit_msg"
