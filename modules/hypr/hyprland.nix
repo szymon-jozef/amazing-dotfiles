@@ -210,6 +210,7 @@ in
         "match:class ^(net.lutris.Lutris)$, workspace 3"
         "match:class ^(rpcs3)$, workspace 3"
         "match:class ^(winboat)$, workspace 5"
+        "match:class ^(qemu)$, workspace 5"
         "match:class ^(obsidian)$, workspace 6"
         "match:class ^(gimp)$, workspace 8"
         "match:class .*potify, workspace 9 silent"
