@@ -81,39 +81,56 @@
           if isNixOS then
             # fish
             ''
-              echo "=== System packages update==="
+              echo "=== System packages update ==="
               pushd /etc/nixos
-              git add -A
-              git commit -m "before system update"
-              nix flake update
-              if test $status -eq 0
-                  git add ./flake.lock
-                  git commit -m "flake lock update"
-                  reload_system 
+
+              if git pull
+                git add -A
+                git commit --allow-empty -m "chore: state before system update"
+                
+                nix flake update
+                
+                if test $status -eq 0
+                    git add ./flake.lock
+                    git commit --allow-empty -m "chore: update system flake.lock"
+                    reload_system 
+                else
+                    echo "Error while updating system flake!"
+                end
               else
-                  echo "Error while updating system flake!"
+                echo "Error: 'git pull' failed in /etc/nixos. Skipping system update."
               end
+
               popd
 
-              echo "===User packages update==="
+              echo "=== User packages update ==="
               pushd $HOME/.config/home-manager
-              git add -A
-              git commit -m "before home-manager update"
-              nix flake update
-              if test $status -eq 0
-                  git add ./flake.lock
-                  git commit -m "flake lock update"
-                  reload_dotfiles
+
+              if git pull
+                git add -A
+                git commit --allow-empty -m "chore: state before home-manager update"
+                
+                nix flake update
+                
+                if test $status -eq 0
+                    git add ./flake.lock
+                    git commit --allow-empty -m "chore: update home flake.lock"
+                    reload_dotfiles
+                else
+                    echo "Error while updating home flake!"
+                end
               else
-                  echo "Error while updating home flake!"
+                echo "Error: 'git pull' failed in home-manager. Skipping user update."
               end
+
               popd
 
               if type -q flatpak
-                  echo "===Flatpak update==="
-                  flatpak update --noninteractive
-                  echo "===Flatpak remove unused==="
-                  flatpak uninstall --unused
+                echo "=== Flatpak update ==="
+                flatpak update --noninteractive
+                
+                echo "=== Flatpak remove unused ==="
+                flatpak uninstall --unused --noninteractive
               end
             ''
           else
