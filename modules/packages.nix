@@ -19,5 +19,11 @@
     slurp
     bc
     nh
+    runc
   ];
+
+  xdg.configFile."containers/containers.conf".text = ''
+    [engine]
+    runtime = "runc"
+  '';
 }

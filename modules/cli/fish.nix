@@ -17,6 +17,8 @@
 
         fish_vi_key_bindings
 
+        direnv hook fish | source
+
         fastfetch --config ~/.config/fastfetch/startup.jsonc
       '';
 
@@ -69,16 +71,6 @@
           "nh os switch /etc/nixos/";
       };
 
-      ls = {
-        body = # fish
-          "eza --long --icons --group-directories-first --git $argv";
-      };
-
-      lst = {
-        body = # fish
-          "eza --long --icons --color --git --tree  $argv";
-      };
-
       cp_mail = {
         body = # fish
           "pandoc $argv -t html |wl-copy -t text/html";
@@ -91,18 +83,32 @@
             ''
               echo "=== System packages update==="
               pushd /etc/nixos
+              git add -A
+              git commit -m "before system update"
               nix flake update
-              reload_system
+              if test $status -eq 0
+                  git add ./flake.lock
+                  git commit -m "flake lock update"
+                  reload_system 
+              else
+                  echo "Error while updating system flake!"
+              end
               popd
 
               echo "===User packages update==="
               pushd $HOME/.config/home-manager
+              git add -A
+              git commit -m "before home-manager update"
               nix flake update
-              reload_dotfiles
+              if test $status -eq 0
+                  git add ./flake.lock
+                  git commit -m "flake lock update"
+                  reload_dotfiles
+              else
+                  echo "Error while updating home flake!"
+              end
               popd
 
-
-              echo "=== Flatpak update==="
               if type -q flatpak
                   echo "===Flatpak update==="
                   flatpak update --noninteractive
@@ -144,15 +150,11 @@
               end
             '';
       };
-
-      rm = {
-        body = "trash $argv";
-      };
-
-      open = {
-        body = "nohup xdg-open $argv > /dev/null & ";
-      };
-
+    };
+    shellAliases = {
+      ls = "eza --long --icons --group-directories-first --git";
+      lst = "eza --long --icons --color --git --tree";
+      rm = "trash";
     };
   };
 }
