@@ -352,8 +352,6 @@ in
       bindd = [
         "$mainMod, F, Make app fullscreen, fullscreen"
         "$mainMod, T, Toggle floating, togglefloating"
-        "$mainMod, S, layoutmsg, swapsplit"
-        "$mainMod, C, layoutmsg, togglesplit"
         "$mainMod, Q, Kill active window, killactive"
       ];
     };
