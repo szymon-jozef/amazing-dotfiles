@@ -120,12 +120,12 @@
           hostName = "paderewski";
         };
 
-        "${baseUserConfig.username}@paderewski-nix" = mkHomeConfig {
+        "${baseUserConfig.username}@paderewski" = mkHomeConfig {
           isNixOS = true;
           overrides = {
             mainMonitor = "DP-1";
           };
-          hostName = "paderewski-nix";
+          hostName = "paderewski";
         };
       };
     };
