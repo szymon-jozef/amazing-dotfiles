@@ -113,14 +113,6 @@
         };
 
         "${baseUserConfig.username}@paderewski" = mkHomeConfig {
-          isNixOS = false;
-          overrides = {
-            mainMonitor = "DP-1";
-          };
-          hostName = "paderewski";
-        };
-
-        "${baseUserConfig.username}@paderewski" = mkHomeConfig {
           isNixOS = true;
           overrides = {
             mainMonitor = "DP-1";
