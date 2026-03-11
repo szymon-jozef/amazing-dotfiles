@@ -20,6 +20,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    zut-calendar.url = "github:szymon-jozef/zut-calendar";
+    zutui.url = "github:shv187/zutui";
+
     hyprcursor-phinger.url = "github:jappie3/hyprcursor-phinger";
   };
 
@@ -30,6 +33,8 @@
       catppuccin,
       nixvim,
       wallpapers,
+      zut-calendar,
+      zutui,
       ...
     }@inputs:
 
@@ -64,6 +69,15 @@
         catppuccin.homeModules.catppuccin
         nixvim.homeModules.nixvim
         inputs.hyprcursor-phinger.homeManagerModules.hyprcursor-phinger
+        (
+          { pkgs, ... }:
+          {
+            home.packages = [
+              zut-calendar.packages.${pkgs.system}.default
+              zutui.packages.${pkgs.system}.default
+            ];
+          }
+        )
       ];
 
       mkHomeConfig =
