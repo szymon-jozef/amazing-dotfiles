@@ -824,11 +824,11 @@
         "uv2nix": "uv2nix"
       },
       "locked": {
-        "lastModified": 1773509848,
-        "narHash": "sha256-FuiUrYz7AkKdScO6u1ewkiYppZN4OEwfQ+QCF99RUR8=",
+        "lastModified": 1773515729,
+        "narHash": "sha256-+TfrJdqRxmzarLednTCFfxDi1uGNYnIbtyLAFw2Pj0U=",
         "owner": "szymon-jozef",
         "repo": "zut-calendar",
-        "rev": "c48d59b60d2dfcfa77faca2b673732813c6054e5",
+        "rev": "3284491807e196414445326d11913b43e7a0225f",
         "type": "github"
       },
       "original": {
