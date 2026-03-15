@@ -108,6 +108,22 @@
         key = "k";
         action= "kzz";
       }
+      {
+        key = "[[";
+        action= "[[zz";
+      }
+      {
+        key = "]]";
+        action= "]]zz";
+      }
+      {
+        key = "{{";
+        action= "{{zz";
+      }
+      {
+        key = "}}";
+        action= "}}zz";
+      }
     ];
 
     autoGroups = {
