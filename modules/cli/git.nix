@@ -41,6 +41,7 @@
       "node_modules"
       "result"
       "__pycache__"
+      ".direnv"
     ];
 
   };

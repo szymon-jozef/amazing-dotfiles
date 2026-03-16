@@ -135,8 +135,8 @@ in
         kb_options = "caps:escape_shifted_capslock";
         kb_rules = "";
         follow_mouse = 1;
-        left_handed = true;
-        sensitivity = 0;
+        left_handed = false;
+        sensitivity = -0.5;
         touchpad = {
           natural_scroll = true;
         };
