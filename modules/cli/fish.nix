@@ -1,4 +1,4 @@
-{ userConfig, hostName, ... }:
+{ userConfig, ... }:
 
 {
   programs.fish = {
@@ -74,6 +74,37 @@
       cp_mail = {
         body = # fish
           "pandoc $argv -t html |wl-copy -t text/html";
+      };
+
+      update_files = {
+        body =
+          # fish
+          ''
+            echo "=== System packages updates ==="
+            pushd /etc/nixos
+
+            git add -A
+            git commit -m 'chore: state before pulling'
+
+            if git pull
+                reload_system
+            end
+
+            popd
+
+            echo "=== User packages update ==="
+            pushd $HOME/.config/home-manager
+
+            git add -A 
+            git commit -m 'chore: state before pulling'
+
+            if git pull
+              reload_dotfiles
+            end
+
+            popd
+          '';
+
       };
 
       update = {
