@@ -25,9 +25,11 @@ in
   wayland.windowManager.hyprland = {
     enable = true;
     package =
-      if userConfig.isNixOS then inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland else null;
-    portalPackage = lib.mkIf (
-      userConfig.isNixOS
+      if userConfig.isNixOS then
+        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland
+      else
+        null;
+    portalPackage = lib.mkIf (userConfig.isNixOS
     ) inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     xwayland.enable = true;
 
@@ -59,7 +61,7 @@ in
       };
 
       animations = {
-        enabled = false;
+        enabled = userConfig.animations;
         bezier = [
           "easeOutQuint,0.23,1,0.32,1"
           "easeInOutCubic,0.65,0.05,0.36,1"

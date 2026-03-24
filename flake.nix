@@ -56,6 +56,7 @@
 
         isNixOS = true;
         hostName = "default";
+        animations = true;
       };
 
       system = "x86_64-linux";
@@ -113,6 +114,7 @@
         "${defaultUserConfig.username}@pitagoras" = mkHome {
           hostName = "pitagoras";
           mainMonitor = "eDP-1";
+          animations = false;
         };
 
         "${defaultUserConfig.username}@pilecki" = mkHome {
