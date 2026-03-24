@@ -1,7 +1,7 @@
 {
   config,
   pkgs,
-  isNixOS,
+  userConfig,
   ...
 }:
 
@@ -10,7 +10,7 @@
 
   programs.mangohud = {
     enable = true;
-    package = if isNixOS then pkgs.mangohud else (pkgs.runCommand "dummy-mangohud" { } "mkdir $out");
+    package = if userConfig.isNixOS then pkgs.mangohud else (pkgs.runCommand "dummy-mangohud" { } "mkdir $out");
   };
 
   xdg.configFile."MangoHud/MangoHud.conf".text = ''

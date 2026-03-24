@@ -1,8 +1,8 @@
-{ isNixOS, lib, ... }:
+{ userConfig, lib, ... }:
 
 {
   programs.chromium = {
     enable = true;
-    package = lib.mkIf (!isNixOS) null;
+    package = lib.mkIf (!userConfig.isNixOS) null;
   };
 }

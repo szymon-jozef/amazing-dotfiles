@@ -1,5 +1,4 @@
 {
-  isNixOS,
   lib,
   userConfig,
   pkgs,
@@ -7,7 +6,7 @@
   ...
 }:
 let
-  exe = pkg: bin: if isNixOS then "${pkg}/bin/${bin}" else "/usr/bin/${bin}";
+  exe = pkg: bin: if userConfig.isNixOS then "${pkg}/bin/${bin}" else "/usr/bin/${bin}";
 
   jq = exe pkgs.jq "jq";
   grim = exe pkgs.grim "grim";
@@ -15,7 +14,7 @@ let
   wl_copy = exe pkgs.wl-clipboard "wl-copy";
   notify_send = exe pkgs.libnotify "notify-send";
   xdg-desktop-portal-hyprland =
-    if isNixOS then
+    if userConfig.isNixOS then
       "${pkgs.xdg-desktop-portal-hyprland}/libexec/xdg-desktop-portal-hyprland"
     else
       "/usr/lib/xdg-desktop-portal-hyprland";
@@ -26,9 +25,9 @@ in
   wayland.windowManager.hyprland = {
     enable = true;
     package =
-      if isNixOS then inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland else null;
+      if userConfig.isNixOS then inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland else null;
     portalPackage = lib.mkIf (
-      isNixOS
+      userConfig.isNixOS
     ) inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     xwayland.enable = true;
 
@@ -36,9 +35,9 @@ in
       "$mainMod" = "SUPER";
       "$terminal" = "uwsm app -- kitty";
       "$menu" = "hyprlauncher";
-      "$music_player" = if isNixOS then "spotify" else "flatpak run com.spotify.Client";
+      "$music_player" = if userConfig.isNixOS then "spotify" else "flatpak run com.spotify.Client";
       "$notes" = "obsidian";
-      "$browser" = if isNixOS then "zen-beta" else "zen-browser"; # beta on nixos
+      "$browser" = if userConfig.isNixOS then "zen-beta" else "zen-browser"; # beta on nixos
       "$openrgb_color" = "09ce30";
 
       env = [
@@ -60,7 +59,7 @@ in
       };
 
       animations = {
-        enabled = true;
+        enabled = false;
         bezier = [
           "easeOutQuint,0.23,1,0.32,1"
           "easeInOutCubic,0.65,0.05,0.36,1"
@@ -140,6 +139,11 @@ in
         touchpad = {
           natural_scroll = true;
         };
+      };
+
+      device = {
+        name = "msft0001:01-06cb:7f28-touchpad";
+        sensitivity = 0;
       };
 
       cursor = {

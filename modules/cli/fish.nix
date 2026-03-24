@@ -1,4 +1,4 @@
-{ isNixOS, hostName, ... }:
+{ userConfig, hostName, ... }:
 
 {
   programs.fish = {
@@ -78,7 +78,7 @@
 
       update = {
         body =
-          if isNixOS then
+          if userConfig.isNixOS then
             # fish
             ''
               echo "=== System packages update ==="

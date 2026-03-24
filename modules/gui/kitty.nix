@@ -1,9 +1,9 @@
-{ lib, isNixOS, ... }:
+{ lib, userConfig, ... }:
 
 {
   programs.kitty = {
     enable = true;
-    package = lib.mkIf (!isNixOS) null;
+    package = lib.mkIf (!userConfig.isNixOS) null;
     settings = {
       confirm_os_window_close = 0;
       dynamic_background_opacity = true;

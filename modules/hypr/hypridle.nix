@@ -1,9 +1,9 @@
-{ isNixOS, lib, ... }:
+{ userConfig, lib, ... }:
 
 {
   services.hypridle = {
     enable = true;
-    package = lib.mkIf (!isNixOS) null;
+    package = lib.mkIf (!userConfig.isNixOS) null;
 
     settings = {
       general = {

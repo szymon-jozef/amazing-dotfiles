@@ -39,98 +39,88 @@
     }@inputs:
 
     let
-      baseUserConfig = {
+      defaultUserConfig = {
         username = "szymon";
-        # for git
         email = "szymon_jozef@proton.me";
         fullName = "Szymon P";
-        # your public ssh key
         signingKey = "~/.ssh/github.pub";
 
-        mainMonitor = "DP-1"; # only for some applications: you still need to set hyprland monitors yourself!
-        statusBar = "ashell"; # available: ashell|waybar
+        mainMonitor = "DP-1";
+        statusBar = "ashell"; # available: ashell | waybar
 
         pathConfig = {
           wallpaper = "Obrazy/tapety/catppuccin";
           screenshot = "Obrazy/zrzuty/";
           obsidian = "Dokumenty/obsidian";
         };
+
+        isNixOS = true;
+        hostName = "default";
       };
 
       system = "x86_64-linux";
 
-      general_import = import nixpkgs {
+      pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
       };
 
-      general_module_import = [
-        ./home.nix
-        catppuccin.homeModules.catppuccin
-        nixvim.homeModules.nixvim
-        inputs.hyprcursor-phinger.homeManagerModules.hyprcursor-phinger
-        (
-          { pkgs, ... }:
-          {
-            home.packages = [
-              zut-calendar.packages.${pkgs.system}.default
-              zutui.packages.${pkgs.system}.default
-            ];
-          }
-        )
-      ];
-
-      mkHomeConfig =
-        {
-          isNixOS,
-          overrides ? { },
-          hostName,
-        }:
+      mkHome =
+        customConfig:
+        let
+          userConfig = defaultUserConfig // customConfig;
+        in
         home-manager.lib.homeManagerConfiguration {
-          pkgs = general_import;
+          inherit pkgs;
 
           extraSpecialArgs = {
-            inherit inputs isNixOS hostName;
-            userConfig = baseUserConfig // overrides;
+            inherit inputs userConfig;
           };
 
-          modules = general_module_import;
+          modules = [
+            ./home.nix
+            catppuccin.homeModules.catppuccin
+            nixvim.homeModules.nixvim
+            inputs.hyprcursor-phinger.homeManagerModules.hyprcursor-phinger
+            (
+              { pkgs, ... }:
+              {
+                home.packages = [
+                  zut-calendar.packages.${pkgs.system}.default
+                  zutui.packages.${pkgs.system}.default
+                ];
+              }
+            )
+          ]
+          ++ (customConfig.extraModules or [ ]);
         };
 
     in
     {
       homeConfigurations = {
-        "arch" = mkHomeConfig {
+        # You can overwrite default configuration here
+
+        "arch" = mkHome {
           isNixOS = false;
           hostName = "arch";
         };
 
-        "nixos" = mkHomeConfig {
+        "nixos" = mkHome {
           isNixOS = true;
           hostName = "nixos";
         };
 
-        "${baseUserConfig.username}@pitagoras" = mkHomeConfig {
-          isNixOS = true;
-          overrides = {
-            mainMonitor = "eDP-1";
-          };
+        "${defaultUserConfig.username}@pitagoras" = mkHome {
           hostName = "pitagoras";
+          mainMonitor = "eDP-1";
         };
 
-        "${baseUserConfig.username}@pilecki" = mkHomeConfig {
-          isNixOS = true;
-          overrides = {
-            mainMonitor = "LVDS-1";
-          };
+        "${defaultUserConfig.username}@pilecki" = mkHome {
           hostName = "pilecki";
+          mainMonitor = "LVDS-1";
         };
 
-        "${baseUserConfig.username}@paderewski" = mkHomeConfig {
-          isNixOS = true;
-          overrides = {
-            mainMonitor = "DP-1";
-          };
+        "${defaultUserConfig.username}@paderewski" = mkHome {
           hostName = "paderewski";
         };
       };

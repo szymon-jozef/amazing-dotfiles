@@ -1,6 +1,5 @@
 {
   pkgs,
-  isNixOS,
   userConfig,
   ...
 }:
@@ -9,7 +8,7 @@
   programs.waybar = {
     enable = true;
     package =
-      if isNixOS then pkgs.waybar else (pkgs.writeShellScriptBin "waybar" "exec /usr/bin/waybar \"$@\"");
+      if userConfig.isNixOS then pkgs.waybar else (pkgs.writeShellScriptBin "waybar" "exec /usr/bin/waybar \"$@\"");
     settings = {
       mainBar = {
         layer = "top";

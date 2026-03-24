@@ -11,7 +11,7 @@ stdenv.mkDerivation {
     owner = "catppuccin";
     repo = "obsidian";
     rev = "main";
-    hash = "sha256-IGkP0z8gJj1dbNclpMebZXZvaRby1F8zGNEDPtitfqo=";
+    hash = "sha256-uB0a2nSZkHHf65xBYXyNh50vaAiqdEpKQVf3eXnCVlE=";
   };
 
   installPhase = ''

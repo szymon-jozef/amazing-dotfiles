@@ -1,6 +1,5 @@
 {
   lib,
-  isNixOS,
   userConfig,
   ...
 }:
@@ -8,7 +7,7 @@
 {
   programs.satty = {
     enable = true;
-    package = lib.mkIf (!isNixOS) null;
+    package = lib.mkIf (!userConfig.isNixOS) null;
     settings = {
       general = {
         fullscreen = true;

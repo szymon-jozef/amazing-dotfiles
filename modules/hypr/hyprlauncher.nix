@@ -1,9 +1,9 @@
-{ isNixOS, lib, ... }:
+{ userConfig, lib, ... }:
 
 {
   services.hyprlauncher = {
     enable = true;
-    package = lib.mkIf (!isNixOS) null;
+    package = lib.mkIf (!userConfig.isNixOS) null;
 
     settings = {
       cache.enabled = true;

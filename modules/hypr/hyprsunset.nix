@@ -1,5 +1,5 @@
 {
-  isNixOS,
+  userConfig,
   pkgs,
   ...
 }:
@@ -8,7 +8,7 @@
   services.hyprsunset = {
     enable = true;
     package =
-      if isNixOS then
+      if userConfig.isNixOS then
         pkgs.hyprsunset
       else
         (pkgs.writeShellScriptBin "hyprsunset" "exec /usr/bin/hyprsunset \"$@\"");

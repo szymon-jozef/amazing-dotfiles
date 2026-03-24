@@ -1,4 +1,4 @@
-{ isNixOS, pkgs, ... }:
+{ userConfig, pkgs, ... }:
 
 {
   services.mako = {
@@ -21,7 +21,7 @@
       progress-color = "over #313244";
       output = "DP-1";
       on-notify =
-        if isNixOS then
+        if userConfig.isNixOS then
           "exec ${pkgs.pulseaudio}/bin/paplay ${pkgs.sound-theme-freedesktop}/share/sounds/freedesktop/stereo/dialog-information.oga"
         else
           "exec paplay /usr/share/sounds/freedesktop/stereo/dialog-information.oga";
@@ -36,7 +36,7 @@
 
       [urgency=critical]
       on-notify=${
-        if isNixOS then
+        if userConfig.isNixOS then
           "exec ${pkgs.pulseaudio}/bin/paplay ${pkgs.sound-theme-freedesktop}/share/sounds/freedesktop/stereo/dialog-information.oga"
         else
           "exec paplay /usr/share/sounds/freedesktop/stereo/dialog-information.oga"

@@ -1,9 +1,9 @@
-{ isNixOS, lib, ... }:
+{ userConfig, lib, ... }:
 
 {
   programs.hyprlock = {
     enable = true;
-    package = lib.mkIf (!isNixOS) null;
+    package = lib.mkIf (!userConfig.isNixOS) null;
 
     settings = {
       "$font" = "Monospace";

@@ -1,6 +1,5 @@
 {
   lib,
-  isNixOS,
   userConfig,
   pkgs,
   ...
@@ -9,7 +8,7 @@
 {
   programs.ashell = {
     enable = true;
-    package = lib.mkIf (!isNixOS) null;
+    package = lib.mkIf (!userConfig.isNixOS) null;
     settings = {
       outputs = {
         Targets = [ userConfig.mainMonitor ];
