@@ -86,8 +86,8 @@
               { pkgs, ... }:
               {
                 home.packages = [
-                  zut-calendar.packages.${pkgs.system}.default
-                  zutui.packages.${pkgs.system}.default
+                  zut-calendar.packages.${pkgs.stdenv.hostPlatform.system}.default
+                  zutui.packages.${pkgs.stdenv.hostPlatform.system}.default
                 ];
               }
             )

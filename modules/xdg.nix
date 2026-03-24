@@ -59,5 +59,6 @@ in
     videos = "$HOME/Video";
     templates = null;
     publicShare = null;
+    setSessionVariables = true;
   };
 }
