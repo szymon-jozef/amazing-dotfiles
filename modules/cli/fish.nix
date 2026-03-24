@@ -94,6 +94,7 @@
                     git add ./flake.lock
                     git commit --allow-empty -m "chore: update system flake.lock"
                     reload_system 
+                    git push
                 else
                     echo "Error while updating system flake!"
                 end
@@ -115,6 +116,7 @@
                 if test $status -eq 0
                     git add ./flake.lock
                     git commit --allow-empty -m "chore: update home flake.lock"
+                    git push
                     reload_dotfiles
                 else
                     echo "Error while updating home flake!"
