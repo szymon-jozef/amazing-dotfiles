@@ -1,29 +1,42 @@
 {
-  description = "Home manager config";
+  description = "Amazing dotfiles";
 
   inputs = {
-    hyprland.url = "github:hyprwm/Hyprland";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    catppuccin.url = "github:catppuccin/nix";
-    wallpapers = {
-      url = "github:orangci/walls-catppuccin-mocha";
-      flake = false;
-    };
+    hyprland.url = "github:hyprwm/Hyprland";
 
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    zut-calendar.url = "github:szymon-jozef/zut-calendar";
-    zutui.url = "github:shv187/zutui";
+    # theming stuff
+    catppuccin = {
+      url = "github:catppuccin/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     hyprcursor-phinger.url = "github:jappie3/hyprcursor-phinger";
+    wallpapers = {
+      url = "github:orangci/walls-catppuccin-mocha";
+      flake = false;
+    };
+
+    # uni stuff
+    zut-calendar = {
+      url = "github:szymon-jozef/zut-calendar";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    zutui = {
+      url = "github:shv187/zutui";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   outputs =
