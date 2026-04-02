@@ -193,8 +193,21 @@
           friendly-snippets.enable = true;
           # dev
           clangd.enable = true;
-          pyright.enable = true;
-          ruff.enable = true;
+          pylsp = {
+            enable = true;
+            settings = {
+              plugins = {
+                ruff = {
+                  enabled = true;
+                  format = [ "I" ];
+                };
+
+                jedi_completion.enabled = true;
+                jedi_definition.enabled = true;
+
+              };
+            };
+          };
           rust_analyzer = {
             enable = true;
             installCargo = true;
