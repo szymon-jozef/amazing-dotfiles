@@ -102,27 +102,27 @@
       }
       {
         key = "j";
-        action= "jzz";
+        action = "jzz";
       }
       {
         key = "k";
-        action= "kzz";
+        action = "kzz";
       }
       {
         key = "[[";
-        action= "[[zz";
+        action = "[[zz";
       }
       {
         key = "]]";
-        action= "]]zz";
+        action = "]]zz";
       }
       {
         key = "{{";
-        action= "{{zz";
+        action = "{{zz";
       }
       {
         key = "}}";
-        action= "}}zz";
+        action = "}}zz";
       }
     ];
 
@@ -194,6 +194,7 @@
           # dev
           clangd.enable = true;
           pyright.enable = true;
+          ruff.enable = true;
           rust_analyzer = {
             enable = true;
             installCargo = true;
