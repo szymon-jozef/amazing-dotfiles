@@ -174,7 +174,7 @@ in
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
         "uwsm app -- ${userConfig.statusBar}"
-        "swww-daemon"
+        "awww-daemon"
         "openrgb -c $openrgb_color"
       ];
 
