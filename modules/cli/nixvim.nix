@@ -202,9 +202,10 @@
                   format = [ "I" ];
                 };
 
+                pylsp_mypy.enabled = true;
+
                 jedi_completion.enabled = true;
                 jedi_definition.enabled = true;
-
               };
             };
           };

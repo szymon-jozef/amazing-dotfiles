@@ -2,7 +2,6 @@
 
 {
   services.ssh-agent.enable = true;
-  services.ssh-agent.enableFishIntegration = true;
 
   programs.ssh = {
     enableDefaultConfig = false;
