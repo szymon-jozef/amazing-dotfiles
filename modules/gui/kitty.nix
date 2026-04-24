@@ -10,9 +10,9 @@
       enable_audio_bell = false;
       mouse_hide_wait = "-1.0";
       window_padding_width = 10;
-      background_opacity = "0.5";
-      font_size = 14;
-      background_blur = 5;
+      background_opacity = "0.95";
+      font_size = 12;
+      background_blur = 15;
       symbol_map =
         let
           mappings = [
