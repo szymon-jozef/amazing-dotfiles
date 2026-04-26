@@ -26,11 +26,12 @@ in
     enable = true;
     package =
       if userConfig.isNixOS then
-        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland
+        #  inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland
+        pkgs.hyprland
       else
         null;
-    portalPackage = lib.mkIf (userConfig.isNixOS
-    ) inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    #portalPackage = lib.mkIf (userConfig.isNixOS
+    #) inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     xwayland.enable = true;
 
     settings = {
