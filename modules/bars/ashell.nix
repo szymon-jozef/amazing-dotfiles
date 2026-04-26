@@ -17,7 +17,7 @@
       modules = {
 
         left = [
-          "Clock"
+          "Tempo"
           "Workspaces"
         ];
         center = [ "WindowTitle" ];
@@ -66,8 +66,13 @@
         }
       ];
 
-      clock = {
-        format = "%H:%M | %e.%m ";
+      tempo = {
+        clock_format = "%H:%M | %e.%m ";
+      };
+
+      media_player = {
+        max_title_length = 50;
+        indicator_format = "Icon";
       };
 
       settings = {
@@ -76,7 +81,7 @@
 
       appearance = {
         scale_factor = 1.2;
-        style = "Gradient";
+        style = "Islands";
         success_color = "#a6e3a1";
         text_color = "#cdd6f4";
         workspace_colors = [
