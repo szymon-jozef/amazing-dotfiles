@@ -124,6 +124,15 @@
         key = "}}";
         action = "}}zz";
       }
+      {
+        mode = "n";
+        key = "<leader>cr";
+        action = ":w<CR>:TermExec cmd='mkdir -p ./out && g++ \"%\" -o \"./out/%:r\" && ./out/\"%:r\"'<CR>";
+        options = {
+          desc = "Compile and run current cpp file";
+          silent = true;
+        };
+      }
     ];
 
     autoGroups = {
@@ -251,6 +260,8 @@
         enable = true;
         settings.draw.delay = 0;
       };
+
+      toggleterm.enable = true;
 
       cmp = {
         enable = true;
