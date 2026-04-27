@@ -1,10 +1,7 @@
 {
   userConfig,
-  pkgs,
   ...
 }:
-let
-in
 {
   wayland.windowManager.hyprland = {
     animations = {
