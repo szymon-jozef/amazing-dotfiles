@@ -3,6 +3,8 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -12,6 +14,11 @@
 
     nixvim = {
       url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -42,6 +49,7 @@
   outputs =
     {
       nixpkgs,
+      nixpkgs-stable,
       home-manager,
       catppuccin,
       nixvim,
@@ -70,6 +78,7 @@
         isNixOS = true;
         hostName = "default";
         animations = true;
+        gaming = true;
       };
 
       system = "x86_64-linux";
@@ -77,6 +86,16 @@
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
+      };
+
+      pkgs-stable = import nixpkgs-stable {
+        inherit system;
+        config = {
+          allowUnfree = true;
+          permittedInsecurePackages = [
+            "electron-38.8.4"
+          ];
+        };
       };
 
       mkHome =
@@ -88,7 +107,7 @@
           inherit pkgs;
 
           extraSpecialArgs = {
-            inherit inputs userConfig;
+            inherit inputs userConfig pkgs-stable;
           };
 
           modules = [

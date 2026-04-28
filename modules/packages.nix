@@ -1,7 +1,17 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-stable, ... }:
 
+let
+  rstudio-with-packages = pkgs-stable.rstudioWrapper.override {
+    # we use stable, because unstable is broken rn
+    packages = with pkgs-stable.rPackages; [
+      # additional packages for rstudio here
+      ggplot2
+    ];
+  };
+in
 {
   home.packages = with pkgs; [
+    # Cli stuff
     libnotify
     cliphist
     gh
@@ -20,6 +30,19 @@
     bc
     nh
     runc
+
+    # Music
+    spotify
+
+    # Gui stuff
+    homebank
+    gimp
+    rstudio-with-packages
+
+    # Messaging
+    vesktop
+    signal-desktop
+
   ];
 
   xdg.configFile."containers/containers.conf".text = ''
