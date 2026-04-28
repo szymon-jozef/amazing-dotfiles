@@ -57,6 +57,7 @@ in
     music = null;
     pictures = "$HOME/Obrazy";
     videos = "$HOME/Video";
+    projects = "$HOME/Kodowanie";
     templates = null;
     publicShare = null;
     setSessionVariables = true;
