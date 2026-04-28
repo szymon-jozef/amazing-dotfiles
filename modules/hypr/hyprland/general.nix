@@ -11,6 +11,11 @@ let
   wl_copy = exe pkgs.wl-clipboard "wl-copy";
   notify_send = exe pkgs.libnotify "notify-send";
   playerctl = exe pkgs.playerctl "playerctl";
+  xdg-desktop-portal-hyprland =
+    if userConfig.isNixOS then
+      "${pkgs.xdg-desktop-portal-hyprland}/libexec/xdg-desktop-portal-hyprland"
+    else
+      "/usr/lib/xdg-desktop-portal-hyprland";
 in
 {
   wayland.windowManager.hyprland = {
@@ -25,28 +30,16 @@ in
     #portalPackage = lib.mkIf (userConfig.isNixOS
     #) inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
 
+    xwayland.enable = true;
     settings = {
-
-      xwayland.enable = true;
-      general = {
-        gaps_in = 4;
-        gaps_out = 6;
-        border_size = 4;
-        "col.active_border" = "$blue $sky";
-        "col.inactive_border" = "$overlay1";
-        resize_on_border = false;
-        allow_tearing = false;
-        layout = "scrolling";
-      };
-
       ecosystem = {
         enforce_permissions = true;
       };
 
       permission = [
-        "^${pkgs.grim}$, screencopy, allow"
-        "^${pkgs.hyprlock}$, screencopy, allow"
-        "^${pkgs.xdg-desktop-portal-hyprland}$, screencopy, allow"
+        "^${pkgs.grim}/bin/grim$, screencopy, allow"
+        "^${pkgs.hyprlock}/bin/hyprlock$, screencopy, allow"
+        "^${xdg-desktop-portal-hyprland}$, screencopy, allow"
       ];
 
       misc = {
@@ -69,6 +62,16 @@ in
         "rounding 0, match:float 0, match:workspace w[tv1]"
         "border_size 0, match:float 0, match:workspace f[1]"
         "rounding 0, match:float 0, match:workspace f[1]"
+      ];
+
+      bind = [
+        "$mainMod, V, exec, cliphist list | hyprlauncher -m | cliphist decode | wl-copy"
+        "$mainMod ALT_L, V, exec, cliphist wipe && notify-send \"Clipboard\" \"Clipboard cleared!\""
+        "$mainMod L_SHIFT ctrl, l, exec, hyprlock"
+        "$mainMod L_SHIFT ctrl, r, exec, openrgb -c black && systemctl reboot"
+        "$mainMod L_SHIFT ctrl, p, exec, openrgb -c black && systemctl poweroff"
+        "$mainMod L_SHIFT ctrl, s, exec, openrgb -c black && pidof hyprlock || sleep 1 && systemctl sleep"
+        "$mainMod L_SHIFT ctrl, m, exec, uwsm stop"
       ];
 
       bindt = [

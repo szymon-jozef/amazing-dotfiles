@@ -4,14 +4,7 @@
   ...
 }:
 let
-  uwsm_run = "${pkgs.uwsm}/bin/uwsm";
-  exe = pkg: bin: if userConfig.isNixOS then "${pkg}/bin/${bin}" else "/usr/bin/${bin}";
-  jq = exe pkgs.jq "jq";
-  grim = exe pkgs.grim "grim";
-  satty = exe pkgs.satty "satty";
-  wl_copy = exe pkgs.wl-clipboard "wl-copy";
-  notify_send = exe pkgs.libnotify "notify-send";
-  playerctl = exe pkgs.playerctl "playerctl";
+  uwsm_run = "${pkgs.uwsm}/bin/uwsm app";
 in
 {
   wayland.windowManager.hyprland = {

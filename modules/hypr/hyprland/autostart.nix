@@ -4,7 +4,7 @@
   ...
 }:
 let
-  uwsm_run = "${pkgs.uwsm}/bin/uwsm";
+  uwsm_run = "${pkgs.uwsm}/bin/uwsm app";
 in
 {
   wayland.windowManager.hyprland.settings = {

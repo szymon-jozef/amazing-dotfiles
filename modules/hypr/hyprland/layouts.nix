@@ -57,6 +57,7 @@
     binde = [
       "$mainMod alt, equal, exec, hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor | awk '/^float.*/ {print $2 * 1.1}')"
       "$mainMod alt, minus, exec, hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor | awk '/^float.*/ {print $2 * 0.9}')"
+      "$mainMod alt, 0, exec, hyprctl -q keyword cursor:zoom_factor 1"
       "$mainMod L_SHIFT, l, resizeactive, 10 0"
       "$mainMod L_SHIFT, h, resizeactive, -10 0"
       "$mainMod L_SHIFT, k, resizeactive, 0 -10"
