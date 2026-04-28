@@ -200,6 +200,25 @@
               end
             '';
       };
+
+      blog_build_and_push = {
+        body =
+          # fish
+          ''
+            set USER szymon
+            set HOST dmowski
+            set DIR /srv/blog/
+            set blog_dir ~/Dokumenty/blog
+
+            pushd $blog_dir || exit 1
+
+            hugo build && rsync -avz --delete public/ $USER@$HOST:$DIR
+
+            popd
+
+            exit 0
+          '';
+      };
     };
     shellAliases = {
       ls = "eza --long --icons --group-directories-first --git";

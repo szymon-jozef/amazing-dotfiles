@@ -39,6 +39,8 @@ in
       nh
       runc
 
+      hugo
+
       # Music
       spotify
 
