@@ -7,7 +7,7 @@ let
   uwsm_run = "${pkgs.uwsm}/bin/uwsm";
 in
 {
-  wayland.windowManager.hyprland = {
+  wayland.windowManager.hyprland.settings = {
     "exec-once" = [
       "wl-paste --type text --watch cliphist store"
       "wl-paste --type image --watch cliphist store"

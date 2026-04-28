@@ -2,17 +2,19 @@
 
 {
   wayland.windowManager.hyprland = {
-    windowrule = [
-      "match:class ^(steam)$, workspace 3 silent"
-      "match:class ^(heroic)$, workspace 3"
-      "match:class ^(net.lutris.Lutris)$, workspace 3"
-      "match:class ^(rpcs3)$, workspace 3"
-    ];
+    settings = {
+      windowrule = [
+        "match:class ^(steam)$, workspace 3 silent"
+        "match:class ^(heroic)$, workspace 3"
+        "match:class ^(net.lutris.Lutris)$, workspace 3"
+        "match:class ^(rpcs3)$, workspace 3"
+      ];
 
-    bind = [
-      "$mainMod Control_L, g, exec, uwsm app -- steam"
-      "$mainMod Control_L, g, focuswindow, class:^(steam)$"
-    ];
+      bind = [
+        "$mainMod Control_L, g, exec, uwsm app -- steam"
+        "$mainMod Control_L, g, focuswindow, class:^(steam)$"
+      ];
+    };
     extraConfig =
       #hyprlang
       ''
@@ -37,5 +39,4 @@
         }
       '';
   };
-
 }

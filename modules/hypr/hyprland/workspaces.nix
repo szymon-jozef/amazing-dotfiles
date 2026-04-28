@@ -1,7 +1,7 @@
 { ... }:
 {
 
-  wayland.windowManager.hyprland = {
+  wayland.windowManager.hyprland.settings = {
     workspace = [
       "1, monitor:DP-2"
       "1, layout: dwindle"

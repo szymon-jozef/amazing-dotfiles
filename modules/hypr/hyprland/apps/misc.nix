@@ -2,27 +2,30 @@
 
 {
   wayland.windowManager.hyprland = {
-    windowrule = [
-      # general rules
-      "match:class ^(winboat)$, workspace 5"
-      "match:class ^(qemu)$, workspace 5"
-      "match:class ^(obsidian)$, workspace 6"
-      "match:class ^(gimp)$, workspace 8"
-      "match:class .*potify, workspace 9 silent"
-      "match:class ^(com.obsproject.Studio)$, workspace 10"
-    ];
+    settings = {
 
-    bind = [
-      "$mainMod, M, exec, [float] waypaper"
-      "$mainMod, RETURN, exec, [workspace 4] $terminal"
-      "$mainMod  CONTROL_L, RETURN, exec, $terminal"
-      "$mainMod, space , exec, $menu"
-      "$mainMod ALT_L, c, exec, openrgb -c $openrgb_color"
-      "$mainMod Control_L, n, exec, [workspace 6] uwsm app -- $notes"
-      "$mainMod Control_L, n, focuswindow, class:^(obsidian)$"
-      "$mainMod Control_L, m, exec, [workspace 9] uwsm app -- $music_player"
-      "$mainMod CONTROL_L L_SHIFT, B, exec, killall ashell && uwsm app -- ashell"
-    ];
+      windowrule = [
+        # general rules
+        "match:class ^(winboat)$, workspace 5"
+        "match:class ^(qemu)$, workspace 5"
+        "match:class ^(obsidian)$, workspace 6"
+        "match:class ^(gimp)$, workspace 8"
+        "match:class .*potify, workspace 9 silent"
+        "match:class ^(com.obsproject.Studio)$, workspace 10"
+      ];
+
+      bind = [
+        "$mainMod, M, exec, [float] waypaper"
+        "$mainMod, RETURN, exec, [workspace 4] $terminal"
+        "$mainMod  CONTROL_L, RETURN, exec, $terminal"
+        "$mainMod, space , exec, $menu"
+        "$mainMod ALT_L, c, exec, openrgb -c $openrgb_color"
+        "$mainMod Control_L, n, exec, [workspace 6] uwsm app -- $notes"
+        "$mainMod Control_L, n, focuswindow, class:^(obsidian)$"
+        "$mainMod Control_L, m, exec, [workspace 9] uwsm app -- $music_player"
+        "$mainMod CONTROL_L L_SHIFT, B, exec, killall ashell && uwsm app -- ashell"
+      ];
+    };
 
     extraConfig =
       #hyprlang

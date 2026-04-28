@@ -2,40 +2,42 @@
 
 {
   wayland.windowManager.hyprland = {
-    input = {
-      kb_layout = "pl";
-      kb_variant = "";
-      kb_model = "";
-      kb_options = "caps:escape_shifted_capslock";
-      kb_rules = "";
-      follow_mouse = 1;
-      left_handed = false;
-      sensitivity = -0.5;
-      touchpad = {
-        natural_scroll = true;
+    settings = {
+      input = {
+        kb_layout = "pl";
+        kb_variant = "";
+        kb_model = "";
+        kb_options = "caps:escape_shifted_capslock";
+        kb_rules = "";
+        follow_mouse = 1;
+        left_handed = false;
+        sensitivity = -0.5;
+        touchpad = {
+          natural_scroll = true;
+        };
       };
-    };
 
-    device = {
-      name = "msft0001:01-06cb:7f28-touchpad";
-      sensitivity = 0;
-    };
+      device = {
+        name = "msft0001:01-06cb:7f28-touchpad";
+        sensitivity = 0;
+      };
 
-    cursor = {
-      no_hardware_cursors = true;
-      inactive_timeout = 5;
-      warp_on_change_workspace = 1;
-      zoom_factor = 1.0;
-      hide_on_key_press = 1;
-    };
+      cursor = {
+        no_hardware_cursors = true;
+        inactive_timeout = 5;
+        warp_on_change_workspace = 1;
+        zoom_factor = 1.0;
+        hide_on_key_press = 1;
+      };
 
-    bindel = [
-      ",XF86MonBrightnessDown, exec, hyprctl hyprsunset gamma -10"
-      ",XF86MonBrightnessUp, exec, hyprctl hyprsunset gamma +10"
-      ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ && ~/.local/bin/wp-vol.sh && paplay /usr/share/sounds/freedesktop/stereo/bell.oga"
-      ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && ~/.local/bin/wp-vol.sh && paplay /usr/share/sounds/freedesktop/stereo/bell.oga"
-      ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_SOURCE@ toggle"
-    ];
+      bindel = [
+        ",XF86MonBrightnessDown, exec, hyprctl hyprsunset gamma -10"
+        ",XF86MonBrightnessUp, exec, hyprctl hyprsunset gamma +10"
+        ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ && ~/.local/bin/wp-vol.sh && paplay /usr/share/sounds/freedesktop/stereo/bell.oga"
+        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && ~/.local/bin/wp-vol.sh && paplay /usr/share/sounds/freedesktop/stereo/bell.oga"
+        ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_SOURCE@ toggle"
+      ];
+    };
 
     extraConfig =
       #hyprlang
