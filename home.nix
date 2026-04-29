@@ -42,6 +42,7 @@
     ./modules/cli/git.nix
     ./modules/cli/fastfetch.nix
     ./modules/cli/kdeconnect.nix
+    ./modules/cli/topgrade.nix
     # gui tools
     ./modules/gui/kitty.nix
     ./modules/gui/satty.nix
