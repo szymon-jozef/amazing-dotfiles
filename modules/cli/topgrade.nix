@@ -16,7 +16,9 @@ in
           "node"
           "hyprpm"
         ];
-        cleanup = true;
+        cleanup = false;
+        notify_end = "never";
+        nix_handle = "nh";
       };
 
       git = {
