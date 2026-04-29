@@ -22,6 +22,8 @@ in
       };
 
       pre_commands = {
+        "Git pull before system flake update " = "cd ${system_path} && git pull";
+        "Git pull before home flake update " = "cd ${home_path} && git pull";
         "Git commit before system flake update" =
           "cd ${system_path} && git add -A && git commit -m 'chore: state before system update'";
         "Git commit before home flake update" =
