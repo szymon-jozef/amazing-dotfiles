@@ -10,6 +10,7 @@ in
     settings = {
       misc = {
         assume_yes = true;
+        pre_sudo = true;
         disable = [
           "flutter"
           "node"
