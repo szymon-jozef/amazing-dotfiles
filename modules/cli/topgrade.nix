@@ -13,6 +13,7 @@ in
         disable = [
           "flutter"
           "node"
+          "hyprpm"
         ];
         cleanup = true;
       };
