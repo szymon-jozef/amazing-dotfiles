@@ -22,12 +22,12 @@ in
       };
 
       pre_commands = {
+        "Git commit before system flake update" =
+          "cd ${system_path} && git add -A && git commit --allow-empty -m 'chore: state before system update'";
+        "Git commit before home flake update" =
+          "cd ${home_path} && git add -A && git commit --allow-empty -m 'chore: state before home update'";
         "Git pull before system flake update " = "cd ${system_path} && git pull";
         "Git pull before home flake update " = "cd ${home_path} && git pull";
-        "Git commit before system flake update" =
-          "cd ${system_path} && git add -A && git commit -m 'chore: state before system update'";
-        "Git commit before home flake update" =
-          "cd ${home_path} && git add -A && git commit -m 'chore: state before home update'";
       };
 
       commands = {
@@ -37,9 +37,9 @@ in
 
       post_commands = {
         "Git commit after system flake update" =
-          "cd ${system_path} && git add -A && git commit -m 'chore: state after system update'";
+          "cd ${system_path} && git add -A && git commit --allow-empty -m 'chore: state after system update'";
         "Git commit after home flake update" =
-          "cd ${home_path} && git add -A && git commit -m 'chore: state after home update'";
+          "cd ${home_path} && git add -A && git commit --allow-empty -m 'chore: state after home update'";
         "Git push system configuration" = "cd ${system_path} && git push";
         "Git push home configuration" = "cd ${home_path} && git push";
       };
