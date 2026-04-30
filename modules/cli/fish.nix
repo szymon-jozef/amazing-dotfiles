@@ -107,99 +107,99 @@
 
       };
 
-     # update = {
-     #   body =
-     #     if userConfig.isNixOS then
-     #       # fish
-     #       ''
-     #         echo "=== System packages update ==="
-     #         pushd /etc/nixos
+      update = {
+        body =
+          if userConfig.isNixOS then
+            # fish
+            ''
+              echo "=== System packages update ==="
+              pushd /etc/nixos
 
-     #         if git pull
-     #           git add -A
-     #           git commit --allow-empty -m "chore: state before system update"
-     #           
-     #           nix flake update
-     #           
-     #           if test $status -eq 0
-     #               git add ./flake.lock
-     #               git commit --allow-empty -m "chore: update system flake.lock"
-     #               reload_system 
-     #               git push
-     #           else
-     #               echo "Error while updating system flake!"
-     #           end
-     #         else
-     #           echo "Error: 'git pull' failed in /etc/nixos. Skipping system update."
-     #         end
+              if git pull
+                git add -A
+                git commit --allow-empty -m "chore: state before system update"
+                
+                nix flake update
+                
+                if test $status -eq 0
+                    git add ./flake.lock
+                    git commit --allow-empty -m "chore: update system flake.lock"
+                    reload_system 
+                    git push
+                else
+                    echo "Error while updating system flake!"
+                end
+              else
+                echo "Error: 'git pull' failed in /etc/nixos. Skipping system update."
+              end
 
-     #         popd
+              popd
 
-     #         echo "=== User packages update ==="
-     #         pushd $HOME/.config/home-manager
+              echo "=== User packages update ==="
+              pushd $HOME/.config/home-manager
 
-     #         if git pull
-     #           git add -A
-     #           git commit --allow-empty -m "chore: state before home-manager update"
-     #           
-     #           nix flake update
-     #           
-     #           if test $status -eq 0
-     #               git add ./flake.lock
-     #               git commit --allow-empty -m "chore: update home flake.lock"
-     #               git push
-     #               reload_dotfiles
-     #           else
-     #               echo "Error while updating home flake!"
-     #           end
-     #         else
-     #           echo "Error: 'git pull' failed in home-manager. Skipping user update."
-     #         end
+              if git pull
+                git add -A
+                git commit --allow-empty -m "chore: state before home-manager update"
+                
+                nix flake update
+                
+                if test $status -eq 0
+                    git add ./flake.lock
+                    git commit --allow-empty -m "chore: update home flake.lock"
+                    git push
+                    reload_dotfiles
+                else
+                    echo "Error while updating home flake!"
+                end
+              else
+                echo "Error: 'git pull' failed in home-manager. Skipping user update."
+              end
 
-     #         popd
+              popd
 
-     #         if type -q flatpak
-     #           echo "=== Flatpak update ==="
-     #           flatpak update --noninteractive
-     #           
-     #           echo "=== Flatpak remove unused ==="
-     #           flatpak uninstall --unused --noninteractive
-     #         end
-     #       ''
-     #     else
-     #       # fish
-     #       ''
-     #         echo "===System update==="
+              if type -q flatpak
+                echo "=== Flatpak update ==="
+                flatpak update --noninteractive
+                
+                echo "=== Flatpak remove unused ==="
+                flatpak uninstall --unused --noninteractive
+              end
+            ''
+          else
+            # fish
+            ''
+              echo "===System update==="
 
-     #         if not type -q yay
-     #           echo "Yay not found… Please consider installing it!"
-     #         else
-     #           yay
-     #         end
+              if not type -q yay
+                echo "Yay not found… Please consider installing it!"
+              else
+                yay
+              end
 
-     #         if type -q pacman
-     #             echo "===Remove orphans==="
-     #             set orphans (pacman -Qtdq)
-     #             if test (count $orphans) -gt 0
-     #                 sudo pacman -Rns $orphans
-     #             end
-     #         end
+              if type -q pacman
+                  echo "===Remove orphans==="
+                  set orphans (pacman -Qtdq)
+                  if test (count $orphans) -gt 0
+                      sudo pacman -Rns $orphans
+                  end
+              end
 
-     #         if type -q flatpak
-     #             echo "===Flatpak update==="
-     #             flatpak update --noninteractive
-     #             echo "===Flatpak remove unused==="
-     #             flatpak uninstall --unused
-     #         end
+              if type -q flatpak
+                  echo "===Flatpak update==="
+                  flatpak update --noninteractive
+                  echo "===Flatpak remove unused==="
+                  flatpak uninstall --unused
+              end
 
-     #         if type -q nix-channel
-     #             echo "===Nix update==="
-     #             nix-channel --update
-     #             echo "===Nix garbage collection==="
-     #             home-manager expire-generations "-7 days"
-     #         end
-     #       '';
-     # };
+              if type -q nix-channel
+                  echo "===Nix update==="
+                  nix-channel --update
+                  echo "===Nix garbage collection==="
+                  home-manager expire-generations "-7 days"
+              end
+            '';
+      };
 
       blog_build_and_push = {
         body =
@@ -224,7 +224,7 @@
       ls = "eza --long --icons --group-directories-first --git";
       lst = "eza --long --icons --color --git --tree";
       rm = "trash";
-      update = "topgrade";
+      # update = "topgrade";
     };
   };
 }
