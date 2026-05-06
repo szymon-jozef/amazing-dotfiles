@@ -1,4 +1,4 @@
-{ ... }:
+{ userConfig, ... }:
 
 let
   browserFallback = [
@@ -52,12 +52,12 @@ in
     enable = true;
     createDirectories = true;
     desktop = null;
-    documents = "$HOME/Dokumenty";
-    download = "$HOME/Pobrane";
+    documents = userConfig.pathConfig.documents;
+    download = userConfig.pathConfig.downloads;
     music = null;
-    pictures = "$HOME/Obrazy";
-    videos = "$HOME/Video";
-    projects = "$HOME/Kodowanie";
+    pictures = userConfig.pathConfig.pictures;
+    videos = userConfig.pathConfig.video;
+    projects = userConfig.pathConfig.projects;
     templates = null;
     publicShare = null;
     setSessionVariables = true;
