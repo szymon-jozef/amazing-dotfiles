@@ -52,12 +52,12 @@ in
     enable = true;
     createDirectories = true;
     desktop = null;
-    documents = userConfig.pathConfig.documents;
-    download = userConfig.pathConfig.downloads;
+    documents = baseNameOf userConfig.pathConfig.documents;
+    download = baseNameOf userConfig.pathConfig.downloads;
     music = null;
-    pictures = userConfig.pathConfig.pictures;
-    videos = userConfig.pathConfig.video;
-    projects = userConfig.pathConfig.projects;
+    pictures = baseNameOf userConfig.pathConfig.pictures;
+    videos = baseNameOf userConfig.pathConfig.video;
+    projects = baseNameOf userConfig.pathConfig.projects;
     templates = null;
     publicShare = null;
     setSessionVariables = true;

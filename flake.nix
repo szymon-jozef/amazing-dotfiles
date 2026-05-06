@@ -70,14 +70,14 @@
         statusBar = "ashell"; # available: ashell | waybar
 
         pathConfig = {
-          wallpaper = "Obrazy/tapety/catppuccin";
-          screenshot = "Obrazy/zrzuty/";
-          obsidian = "Dokumenty/obsidian";
-          projects = "Kodowanie";
-          documents = "Dokumenty";
-          pictures = "Obrazy";
-          downloads = "Pobrane";
-          video = "Video";
+          wallpaper = "Obrazy/tapety/catppuccin"; # relative to $HOME/
+          screenshot = "Obrazy/zrzuty/"; # relative to $HOME/
+          obsidian = "Dokumenty/obsidian"; # relative to $HOME/
+          projects = "~/Kodowanie";
+          documents = "~/Dokumenty";
+          pictures = "~/Obrazy";
+          downloads = "~/Pobrane";
+          video = "~/Video";
         };
 
         isNixOS = true;

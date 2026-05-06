@@ -1,4 +1,4 @@
-{ userConfig, ... }:
+{ userConfig, lib, ... }:
 
 {
   programs.yazi = {
@@ -71,29 +71,6 @@
           "k"
         ];
         run = "cd ${userConfig.pathConfig.projects}";
-      }
-    ];
-
-    theme.icon.prepend_dirs = [
-      {
-        name = userConfig.pathConfig.downloads;
-        text = "󰉍";
-      }
-      {
-        name = userConfig.pathConfig.documents;
-        text = "";
-      }
-      {
-        name = userConfig.pathConfig.video;
-        text = "󰕧";
-      }
-      {
-        name = userConfig.pathConfig.pictures;
-        text = "󰋩";
-      }
-      {
-        name = userConfig.pathConfig.projects;
-        text = "";
       }
     ];
   };
