@@ -1,4 +1,4 @@
-{ userConfig, lib, ... }:
+{ userConfig, ... }:
 
 {
   programs.yazi = {
