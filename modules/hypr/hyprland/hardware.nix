@@ -11,15 +11,16 @@
         kb_rules = "";
         follow_mouse = 1;
         left_handed = false;
-        sensitivity = -0.5;
+        sensitivity = 0;
         touchpad = {
           natural_scroll = true;
         };
       };
 
+      # mouse has super high dpi so lover the sensitivity!
       device = {
-        name = "msft0001:01-06cb:7f28-touchpad";
-        sensitivity = 0;
+        name = "corsair-corsair-m75-gaming-mouse";
+        sensitivity = -0.5;
       };
 
       cursor = {
