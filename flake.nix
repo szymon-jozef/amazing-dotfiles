@@ -73,6 +73,11 @@
           wallpaper = "Obrazy/tapety/catppuccin";
           screenshot = "Obrazy/zrzuty/";
           obsidian = "Dokumenty/obsidian";
+          projects = "Kodowanie";
+          documents = "Dokumenty";
+          pictures = "Obrazy";
+          downloads = "Pobrane";
+          video = "Video";
         };
 
         isNixOS = true;
