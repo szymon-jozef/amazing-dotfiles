@@ -230,10 +230,7 @@
         };
         keymaps = {
           lspBuf = {
-            "gd" = "definition";
-            "gi" = "implementation";
             "<leader>ca" = "code_action";
-            "<leader>cf" = "format";
             "<leader>r" = "rename";
           };
         };
