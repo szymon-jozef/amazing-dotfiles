@@ -47,6 +47,7 @@ in
       homebank
       gimp
       rstudio-with-packages
+      feh
 
       # Messaging
       vesktop

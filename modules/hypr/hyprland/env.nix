@@ -5,6 +5,7 @@
 }:
 let
   uwsm_run = "${pkgs.uwsm}/bin/uwsm app";
+  signal_client = "${pkgs.kitty}/bin/kitty --title 'gurk' ${pkgs.gurk-rs}/bin/gurk";
 in
 {
   wayland.windowManager.hyprland = {
@@ -17,6 +18,7 @@ in
       "$notes" = "${pkgs.obsidian}/bin/obsidian";
       "$browser" = if userConfig.isNixOS then "zen-beta" else "zen-browser"; # beta on nixos
       "$openrgb_color" = "09ce30";
+      "$signal_client" = signal_client;
 
       env = [
         "XCURSOR_SIZE, 32"

@@ -11,7 +11,7 @@
       ];
 
       bind = [
-        "$mainMod Control_L, s, exec,[workspace 1] signal-desktop --password-store=\"kwallet6\""
+        "$mainMod Control_L, s, exec,[workspace 1] $signal_client"
         "$mainMod Control_L, s, focuswindow, class:^(signal)$"
         "$mainMod Control_L, s, focuswindow, title:^(signal)$"
         "$mainMod Control_L, v, sendshortcut, ctrl, k, class:^(vesktop)$"
