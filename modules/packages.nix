@@ -15,6 +15,7 @@ let
     ];
   };
 in
+
 {
   home.packages =
     with pkgs;
@@ -57,7 +58,7 @@ in
       prismlauncher
       heroic
       # lutris
-      rpcs3
+      pkgs-stable.rpcs3
       pcsx2
     ];
 

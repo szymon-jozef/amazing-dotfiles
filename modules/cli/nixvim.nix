@@ -224,6 +224,10 @@
             installRustc = true;
           };
           # nix
+          nixd = {
+            enable = true;
+            filetypes = [ "nix" ];
+          };
           nil_ls.enable = true;
           # other
           marksman.enable = true;
