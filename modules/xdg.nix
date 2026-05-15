@@ -39,6 +39,8 @@ in
 
       "image/*" = [ "org.kde.koko.desktop" ];
       "image/png" = [ "feh.desktop" ];
+      "image/jpeg" = [ "feh.desktop" ];
+      "image/jpg" = [ "feh.desktop" ];
       "image/bmp" = [ "feh.desktop" ];
       "image/svg+xml" = [ "feh.desktop" ];
 
