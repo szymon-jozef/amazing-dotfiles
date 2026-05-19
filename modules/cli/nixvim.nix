@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, userConfig, ... }:
 
 {
   programs.nixvim = {
@@ -227,8 +227,17 @@
           nixd = {
             enable = true;
             filetypes = [ "nix" ];
+            formatting = {
+              command = [ "nixfmt" ];
+            };
+
+            nixpkgs.expr = ''
+              import (builtins.getFlake "/etc/nixos/").inputs.nixpkgs { }
+            '';
+            home-manager.expr = ''
+              (builtins.getFlake "/home/${userConfig.username}/.home-manager").homeConfigurations."${userConfig.username}@${userConfig.hostName}".options
+            '';
           };
-          nil_ls.enable = true;
           # other
           marksman.enable = true;
         };

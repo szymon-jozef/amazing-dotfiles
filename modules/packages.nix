@@ -39,6 +39,7 @@ in
       bc
       nh
       runc
+      nixfmt
 
       # Music
       spotify
