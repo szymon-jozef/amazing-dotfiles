@@ -7,6 +7,8 @@ let
     "brave.desktop"
     "chromium.desktop"
   ];
+
+  imageViewer = "feh.desktop";
 in
 {
   xdg.portal.config = {
@@ -38,11 +40,12 @@ in
       "audio/mpeg" = [ "mpv.desktop" ];
 
       "image/*" = [ "org.kde.koko.desktop" ];
-      "image/png" = [ "feh.desktop" ];
-      "image/jpeg" = [ "feh.desktop" ];
-      "image/jpg" = [ "feh.desktop" ];
-      "image/bmp" = [ "feh.desktop" ];
-      "image/svg+xml" = [ "feh.desktop" ];
+      "image/png" = [ imageViewer ];
+      "image/jpeg" = [ imageViewer ];
+      "image/jpg" = [ imageViewer ];
+      "image/bmp" = [ imageViewer ];
+      "image/svg+xml" = [ imageViewer ];
+      "image/webp" = [ imageViewer ];
 
       "x-scheme-handler/discord" = [ "vesktop.desktop" ];
       "x-scheme-handler/sgnl" = [ "signal-desktop.desktop" ];
