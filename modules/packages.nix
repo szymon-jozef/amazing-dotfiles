@@ -51,6 +51,7 @@ in
       gimp
       rstudio-with-packages
       feh
+      libreoffice
 
       # Messaging
       vesktop
