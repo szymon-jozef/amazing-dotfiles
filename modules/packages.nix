@@ -40,6 +40,8 @@ in
       nh
       runc
       nixfmt
+      zathura
+      zathuraPkgs.zathura_pdf_mupdf
 
       # Music
       spotify
