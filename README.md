@@ -1,3 +1,5 @@
+# This repo is now deprecated in favor of new [nixos-born-again](https://github.com/szymon-jozef/nixos-born-again)
+
 ![Nix](https://img.shields.io/badge/Nix-unstable-blue.svg?logo=nixos&logoColor=white)
 ![Home Manager](https://img.shields.io/badge/Home_Manager-enabled-brightgreen.svg)
 # My even cooler than previous dotfiles!
